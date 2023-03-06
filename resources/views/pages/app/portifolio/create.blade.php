@@ -99,7 +99,7 @@
                                                  
                                               
                                                 data-allow-reorder="true"
-                                                data-max-file-size="3MB"
+                                                data-max-file-size="10MB"
                                                 data-max-files="1">
                                         </div>
 
