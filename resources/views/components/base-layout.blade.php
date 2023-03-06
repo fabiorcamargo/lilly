@@ -119,7 +119,7 @@
             !Request::routeIs('login')
         )
 
-        @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-*'))  
+        @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show'))  
         <!--  BEGIN NAVBAR  -->
         @isset((Auth::user()->role))
         <x-navbar.style-vertical-menu avatar="{{ Auth::user()->image }}" classes="{{($isBoxed ? 'container-xxl' : '')}}"/>
@@ -137,7 +137,7 @@
             <x-layout-overlay/>
             <!--  END LOADER  -->
 
-            @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-*')) 
+            @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show')) 
             <!--  BEGIN SIDEBAR  -->
             
            
@@ -150,7 +150,7 @@
             @endif
             
             <!--  BEGIN CONTENT AREA  -->
-            @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-*'))  
+            @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show'))  
             <div id="content" class="main-content {{(Request::routeIs('blank') ? 'ms-0 mt-0' : '')}}">
             @else
             <div id="" class="main-content {{(Request::routeIs('blank') ? 'ms-0 mt-0' : '')}}">
