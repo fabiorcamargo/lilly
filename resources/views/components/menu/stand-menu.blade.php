@@ -17,8 +17,8 @@
                     <div class="nav-logo">
                         <div class="nav-item theme-logo">
                             <a href="{{getRouterValue();}}/dashboard/analytics">
-                                <img src="{{Vite::asset('resources/images/logo.svg')}}" class="navbar-logo logo-dark" alt="logo">
-                                <img src="{{Vite::asset('resources/images/logo2.svg')}}" class="navbar-logo logo-light" alt="logo">
+                                <img src="{{Vite::asset('resources/images/Logo-Lilly-Photo.svg')}}" class="navbar-logo logo-dark" alt="logo">
+                                <img src="{{Vite::asset('resources/images/Logo-Lilly-Photo.svg')}}" class="navbar-logo logo-light" alt="logo">
                             </a>
                         </div>
                         <div class="nav-item theme-text">
@@ -116,6 +116,34 @@
                             {{--<li class="{{ Request::routeIs('user-reset') ? 'active' : '' }}">
                                 <a href="{{getRouterValue();}}/app/user/reset"> Resetar Senha </a>
                             </li>--}}
+                        </ul>
+                    </li>
+                    <li class="menu {{ Request::is('*/app/portifolio/*') ? "active" : "" }}">
+                        <a href="#blog" data-bs-toggle="collapse" aria-expanded="{{ Request::is('*/app/blog/*') ? "true" : "false" }}" class="dropdown-toggle">
+                            <div class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                                <span>Portifólio</span>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled {{ Request::is('*/app/blog*') ? "show" : "" }}" id="blog" data-bs-parent="#accordionExample">
+                            <li class="{{ Request::routeIs('portifolio-grid') ? 'active' : '' }}">
+                                <a href="{{getRouterValue();}}/app/portifolio/grid"> Grid </a>
+                            </li>
+                            <li class="{{ Request::routeIs('portifolio-list') ? 'active' : '' }}">
+                                <a href="{{getRouterValue();}}/app/portifolio/list"> List </a>
+                            </li>
+                            <li class="{{ Request::routeIs('portifolio-post') ? 'active' : '' }}">
+                                <a href="{{getRouterValue();}}/app/portifolio/post"> Post </a>
+                            </li>
+                            <li class="{{ Request::routeIs('portifolio-create') ? 'active' : '' }}">
+                                <a href="{{getRouterValue();}}/app/portifolio/create"> Create </a>
+                            </li>                            
+                            <li class="{{ Request::routeIs('portifolio-edit') ? 'active' : '' }}">
+                                <a href="{{getRouterValue();}}/app/portifolio/edit"> Edit </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="menu {{ Request::is('*/app/group/*') ? "active" : "" }}">
@@ -362,34 +390,7 @@
                         </ul>
                     </li>
 
-                    <li class="menu {{ Request::is('*/app/portifolio/*') ? "active" : "" }}">
-                        <a href="#blog" data-bs-toggle="collapse" aria-expanded="{{ Request::is('*/app/blog/*') ? "true" : "false" }}" class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
-                                <span>Portifólio</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled {{ Request::is('*/app/blog*') ? "show" : "" }}" id="blog" data-bs-parent="#accordionExample">
-                            <li class="{{ Request::routeIs('portifolio-grid') ? 'active' : '' }}">
-                                <a href="{{getRouterValue();}}/app/portifolio/grid"> Grid </a>
-                            </li>
-                            <li class="{{ Request::routeIs('portifolio-list') ? 'active' : '' }}">
-                                <a href="{{getRouterValue();}}/app/portifolio/list"> List </a>
-                            </li>
-                            <li class="{{ Request::routeIs('portifolio-post') ? 'active' : '' }}">
-                                <a href="{{getRouterValue();}}/app/portifolio/post"> Post </a>
-                            </li>
-                            <li class="{{ Request::routeIs('portifolio-create') ? 'active' : '' }}">
-                                <a href="{{getRouterValue();}}/app/portifolio/create"> Create </a>
-                            </li>                            
-                            <li class="{{ Request::routeIs('portifolio-edit') ? 'active' : '' }}">
-                                <a href="{{getRouterValue();}}/app/portifolio/edit"> Edit </a>
-                            </li>
-                        </ul>
-                    </li>
+                    
 
                     <li class="menu menu-heading">
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>USER INTERFACE</span></div>
