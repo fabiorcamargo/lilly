@@ -110,6 +110,8 @@ class CademiController extends Controller
             ])->post("$url", $payload));
          }
         //dd($cademi);
+
+        
          
             if (isset($cademi->data[0]->erro)){
                 //dd($cademi);

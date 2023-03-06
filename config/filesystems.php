@@ -101,7 +101,6 @@ return [
         public_path('storage') => storage_path('app/public'),
         public_path('tmp') => storage_path('app/tmp'),
         public_path('avatar') => storage_path('app/avatar'),
-        public_path('product') => storage_path('app/product'),
         public_path('bg') => storage_path('app/bg'),
         public_path('photos') => storage_path('app/photos'),
     ],
