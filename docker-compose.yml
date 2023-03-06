@@ -1,0 +1,73 @@
+version: "3.7"
+
+services:
+    # image project
+    app:
+        container_name: photo-laravel-9
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: especializati/laravel9-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        depends_on: 
+            - redis
+        networks: 
+            - photo-1
+    
+    # nginx
+    nginx:
+        container_name: photo-nginx
+        image: nginx:alpine
+        restart: unless-stopped
+        ports: 
+            - "8992:80"
+        volumes: 
+            - ./:/var/www
+            - ./docker/nginx/:/etc/nginx/conf.d/
+        networks: 
+            - photo-1
+
+    # db mysql
+    mysql:
+        container_name: photo-mysql
+        image: mysql:5.7.22
+        restart: unless-stopped
+        environment: 
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+        volumes: 
+            - ./.docker/mysql/dbdata:/var/lib/mysql
+        ports: 
+            - "3392:3306"
+        networks: 
+            - photo-1
+
+    # queue
+    queue:
+        container_name: photo-queue
+        image: especializati/laravel9-app
+        restart: unless-stopped
+        command: "php artisan queue:work"
+        volumes: 
+            - ./:/var/www
+        depends_on: 
+            - redis
+            - app
+        networks: 
+            - photo-1
+
+    # redis
+    redis:
+        container_name: photo-redis
+        image: redis:latest
+        networks: 
+            - photo-1
+
+networks: 
+    photo-1:
+        driver: bridge

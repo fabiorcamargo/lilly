@@ -1,0 +1,21 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "axios": "^0.27",
+        "laravel-vite-plugin": "^0.6.0",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "vite": "^3.0.0"
+    },
+    "dependencies": {
+        "@tabler/icons": "^2.5.0",
+        "bootstrap": "^5.2.1",
+        "card": "^2.5.4",
+        "filepond": "^4.30.4",
+        "sass": "^1.55.0"
+    }
+}
