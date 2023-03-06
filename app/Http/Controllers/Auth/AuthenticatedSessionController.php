@@ -18,7 +18,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login2', ['title' => 'Profissionaliza EAD - Seu melhor sistema de ensino', 'breadcrumb' => 'Login']);
+        return view('auth.login2', ['title' => 'Lilly Almeida - Seu melhor sistema de ensino', 'breadcrumb' => 'Login']);
     }
 
     /**
@@ -34,11 +34,11 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if(empty(Auth::user()->first)){
-        $home = '/modern-dark-menu/aluno/first';
+        $home = '/modern-light-menu/aluno/first';
         }else{    
 
         if ((Auth::check())){
-        $home = '/modern-dark-menu/aluno/my';    
+        $home = '/modern-light-menu/aluno/my';    
         }
         
     }
@@ -60,6 +60,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return Redirect::to('https://alunos.profissionalizaead.com.br/login');;
+        return Redirect::to('http://134.122.120.118/plesk-site-preview/lillyalmeida.com.br/http/134.122.120.118/modern-light-menu/app/blog/grid');;
     }
 }

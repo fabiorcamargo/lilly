@@ -11,13 +11,20 @@
         @vite(['resources/scss/light/assets/apps/blog-post.scss'])
         @vite(['resources/scss/dark/assets/elements/custom-pagination.scss'])
         @vite(['resources/scss/dark/assets/apps/blog-post.scss'])
+
+        @vite(['resources/scss/light/assets/apps/invoice-preview.scss'])
+        @vite(['resources/scss/dark/assets/apps/invoice-preview.scss'])
+
+        
+        @vite(['resources/scss/light/assets/elements/alert.scss'])
+        @vite(['resources/scss/dark/assets/elements/alert.scss'])
         <!--  END CUSTOM STYLE FILE  -->
     </x-slot>
     <!-- END GLOBAL MANDATORY STYLES -->
     
-    <div class="row layout-top-spacing">
+    <div class="row invoice layout-top-spacing layout-spacing">
     
-        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
 
             <div class="single-post-content">
@@ -233,6 +240,7 @@
         </div>
 
     </div>
+    
     
     <!--  BEGIN CUSTOM SCRIPTS FILE  -->
     <x-slot:footerFiles>

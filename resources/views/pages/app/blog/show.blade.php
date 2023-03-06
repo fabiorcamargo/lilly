@@ -22,8 +22,8 @@
         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">App</a></li>
-                <li class="breadcrumb-item"><a href="#">Blog</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Post</li>
+                <li class="breadcrumb-item"><a href="#">Portifolio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Show</li>
             </ol>
         </nav>
     </div>

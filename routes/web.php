@@ -315,7 +315,7 @@ Route::middleware(['auth', 'can:edit'])->group(function () {
                 Route::get('/grid',[Portfolio::class, 'grid'])->name('portifolio-grid');
                 Route::get('/show/{id}',[Portfolio::class, 'show'])->name('portifolio-show');
             });
-
+/*
             Route::prefix('/portifolio')->group(function () {
                 Route::get('/create', function () {
                     return view('pages.app.blog.create', ['title' => 'portifolio Novo', 'breadcrumb' => 'This Breadcrumb']);
@@ -329,7 +329,7 @@ Route::middleware(['auth', 'can:edit'])->group(function () {
                 Route::get('/show/{id}',[Portfolio::class, 'show'])->name('portifolio-show');
                 Route::get('/photos/{id}',[Portfolio::class, 'photo'])->name('portifolio-photo');
                 Route::post('/photos/{id}',[Portfolio::class, 'photo_post'])->name('portifolio-photo');
-            });
+            });*/
         /*
             // Ecommerce
             Route::prefix('/ecommerce')->group(function () {
@@ -1293,11 +1293,28 @@ Route::prefix('/app/eco')->group(function () {
     
 });
 
+
+
 Route::prefix('/app/form')->group(function () {
 
     Route::get('/end/{id}', [FormController::class, 'end_show'])->name('form-end-show');
     Route::post('/end/{id}', [FormController::class, 'end_post'])->name('form-end-post');
 
+});
+
+Route::prefix('/app/portifolio')->group(function () {
+    Route::get('/create', function () {
+        return view('pages.app.blog.create', ['title' => 'portifolio Novo', 'breadcrumb' => 'This Breadcrumb']);
+    })->name('portifolio-create');
+    Route::post('/bg-upload',[Portfolio::class, 'bg_upload'])->name('bg-upload');
+    Route::delete('/bg-delete',[Portfolio::class, 'bg_delete'])->name('bg-delete');
+    Route::post('/photos-upload/{id}',[Portfolio::class, 'photos_upload'])->name('photos-upload');
+    Route::delete('/photos-delete',[Portfolio::class, 'photos_delete'])->name('photos-delete');
+    Route::post('/create',[Portfolio::class, 'create'])->name('portifolio-create');
+    Route::get('/grid',[Portfolio::class, 'grid'])->name('portifolio-grid');
+    Route::get('/show/{id}',[Portfolio::class, 'show'])->name('portifolio-show');
+    Route::get('/photos/{id}',[Portfolio::class, 'photo'])->name('portifolio-photo');
+    Route::post('/photos/{id}',[Portfolio::class, 'photo_post'])->name('portifolio-photo');
 });
 
 
@@ -1306,6 +1323,9 @@ Route::prefix('/app/form')->group(function () {
 
 });
 }
+
+
+
 Route::get('/fb/ViewContent', [ConversionApiFB::class, 'ViewContent'])->name('fb-ViewContent');
 Route::get('/form/{id}', [FormController::class, 'redir'])->name('form-redirect');
 

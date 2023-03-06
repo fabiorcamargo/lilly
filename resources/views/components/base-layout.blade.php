@@ -20,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>{{ $pageTitle }}</title>
-    <link rel="icon" type="image/x-icon" href="{{Vite::asset('resources/images/favicon.ico')}}"/>
+    <link rel="icon" type="image/x-icon" href="{{Vite::asset('resources/images/Logo-Lilly-Photo.png')}}"/>
     @vite(['resources/scss/layouts/vertical-light-menu/light/loader.scss'])
 
     @if (Request::is('modern-light-menu/*'))
@@ -119,7 +119,7 @@
             !Request::routeIs('login')
         )
 
-        @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*'))  
+        @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-*'))  
         <!--  BEGIN NAVBAR  -->
         @isset((Auth::user()->role))
         <x-navbar.style-vertical-menu avatar="{{ Auth::user()->image }}" classes="{{($isBoxed ? 'container-xxl' : '')}}"/>
@@ -137,7 +137,7 @@
             <x-layout-overlay/>
             <!--  END LOADER  -->
 
-            @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*')) 
+            @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-*')) 
             <!--  BEGIN SIDEBAR  -->
             
            
@@ -150,8 +150,11 @@
             @endif
             
             <!--  BEGIN CONTENT AREA  -->
+            @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-*'))  
             <div id="content" class="main-content {{(Request::routeIs('blank') ? 'ms-0 mt-0' : '')}}">
-
+            @else
+            <div id="" class="main-content {{(Request::routeIs('blank') ? 'ms-0 mt-0' : '')}}">
+            @endif    
                 @if ($scrollspy == 1)
                     <div class="container">
                         <div class="container">

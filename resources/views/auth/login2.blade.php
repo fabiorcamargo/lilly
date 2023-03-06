@@ -8,7 +8,7 @@
     <x-slot:headerFiles>
         <!--  BEGIN CUSTOM STYLE FILE  -->
         @vite(['resources/scss/light/assets/authentication/auth-cover.scss'])
-        @vite(['resources/scss/dark/assets/authentication/auth-cover.scss'])
+      
         <!--  END CUSTOM STYLE FILE  -->
     </x-slot>
     <!-- END GLOBAL MANDATORY STYLES -->
@@ -20,17 +20,17 @@
             <div class="row">
     
                 <div class="col-6 d-lg-flex d-none h-100 my-auto top-0 start-0 text-center justify-content-center flex-column">
-                    <div class="auth-cover-bg-image"></div>
+                    <div class="auth-cover-bg-image"><img src="{{Vite::asset('resources/images/lightbox-2.jpeg')}}" alt="auth-img"></div>
                     <div class="auth-overlay"></div>
                         
                     <div class="auth-cover">
     
                         <div class="position-relative">
     
-                            <img src="{{Vite::asset('resources/images/auth-cover.svg')}}" alt="auth-img">
+                       
     
-                            <h2 class="mt-5 text-white font-weight-bolder px-2">Profissionaliza EAD</h2>
-                            <p class="text-white px-2">Uma das maiores Plataformas de Estudo do Brasil</p>
+                            <h2 class="mt-5 text-white font-weight-bolder px-2">Lilly Almeida</h2>
+                            <p class="text-white px-2">Criando Recordações</p>
                         </div>
                         
                     </div>
@@ -43,7 +43,7 @@
     
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <h2 class="animate__animated animate__pulse animate__infinite text-center"><img src="{{Vite::asset('resources/images/logo.svg')}}" class="navbar-logo logo-dark  mb-3" style="width: 70px;" alt="logo"></h2>
+                                        <h2 class="animate__animated animate__pulse animate__infinite text-center"><img src="{{Vite::asset('resources/images/Logo-Lilly-Photo.svg')}}" class="navbar-logo logo-dark  mb-3" style="width: 200px;" alt="logo"></h2>
                                     
                                     <h2 class="text-center">Entrar</h2>
                                     <div class="seperator-text text-center"> <span>Insira os dados de usuário para entrar na Plataforma</span></div>
