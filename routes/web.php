@@ -1304,7 +1304,7 @@ Route::prefix('/app/form')->group(function () {
 
 Route::prefix('/app/portifolio')->group(function () {
     Route::get('/create', function () {
-        return view('pages.app.blog.create', ['title' => 'portifolio Novo', 'breadcrumb' => 'This Breadcrumb']);
+        return view('pages.app.portifolio.create', ['title' => 'portifolio Novo', 'breadcrumb' => 'This Breadcrumb']);
     })->name('portifolio-create');
     Route::post('/bg-upload',[Portfolio::class, 'bg_upload'])->name('bg-upload');
     Route::delete('/bg-delete',[Portfolio::class, 'bg_delete'])->name('bg-delete');

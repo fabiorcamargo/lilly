@@ -40,31 +40,28 @@
 
     <div class="row mb-4 layout-spacing layout-top-spacing">
 
-        <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="col-xxl-10 col-xl-12 col-lg-12 col-md-12 col-sm-12">
 
-            <div class="widget-content widget-content-area blog-create-section">
+            
                 <form action="{{ getRouterValue(); }}/app/portifolio/create"  method="post" enctype="multipart/form-data" name="form1" class="was-validated">
                     @csrf
-                                <div class="row mb-4">
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="name" name="name" onblur="submeter()" placeholder="Nome do Album">
+                            <div class="widget-content widget-content-area blog-create-section mb-4">
+                                    <div class="row mb-4">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="album" name="album" onblur="submeter()" placeholder="Nome do Album">
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row mb-4">
-                                    <div class="col-sm-12">
-                                        <label>Descrição</label>
-                                        <div id="quillEditor"></div>
-                                        <input id="description" name="description" hidden>
+                                    <div class="row mb-4">
+                                        <div class="col-sm-12">
+                                            <label>Descrição</label>
+                                            <div id="quillEditor"></div>
+                                            <input id="description" name="description" hidden>
+                                        </div>
                                     </div>
-                                </div>
-
                             </div>
                             
-                        </div>
-
-                        <div class="col-xxl-3 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-xxl-0 mt-4">
-                            <div class="widget-content widget-content-area blog-create-section">
+                            <div class="widget-content widget-content-area blog-create-section mb-4">
                                 <div class="row">
                                     <div class="col-xxl-12 mb-4">
                                         <div class="switch form-switch-custom switch-inline form-switch-primary">
@@ -90,27 +87,32 @@
 
                                     <div class="col-xxl-12 col-md-12 mb-4">
 
-                                        <label for="product-images">Miniatura do Album</label>
+                                        <label for="product-images">Fotos</label>
                                         <div class="multiple-file-upload">
                                 
-                                            <input type="file" 
-                                                class="filepond file-upload-multiple"
-                                                name="filepond" 
-                                                 
+                                            <input type="" 
+                                                class="filepond"
+                                                name="photos" 
+                                                id="photos"
+                                                multiple
                                               
                                                 data-allow-reorder="true"
                                                 data-max-file-size="10MB"
-                                                data-max-files="1">
+                                                data-max-files="20"
+                                                hidden>
+                                                
                                         </div>
 
                                     </div>
+                                </div>
+                            </div>
 
                     <div class="col-xxl-12 col-sm-4 col-12 mx-auto">
-                        <button class="btn btn-success w-100">Create Post</button>
+                        <button class="btn btn-success w-100">Criar Album</button>
                     </div>
                 </form>
                 </div>
-            </div>
+            
         </div>
 
     </div>
@@ -133,13 +135,12 @@
         <script>
             function submeter()
             {
-                var inpname = document.getElementById('name').value;
-                document.cookie = "name=" + inpname + ";" + "path=/";
-            }
-        </script>
+                var inpname = document.getElementById('album').value;
+                document.cookie = "photos=" + inpname + ";" + "path=/";
+            
 
-        <script>
-            const inputElement = document.getElementById('bg-upload');
+
+            const inputElement = document.getElementById('photos');
             const pond = FilePond.create(inputElement);
 
             FilePond.registerPlugin(
@@ -167,6 +168,8 @@
         }
 
         });
+
+    }
         </script>
 
         <script>

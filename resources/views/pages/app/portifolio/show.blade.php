@@ -36,7 +36,7 @@
 
             <div class="single-post-content">
 
-                <div class="featured-image" style='background-image: url("{{asset("/bg/$portifolio->title/$portifolio->bg")}}");'>
+                <div class="featured-image" style='background-image: url("{{asset("$portifolio->bg")}}");'>
 
                     <div class="featured-image-overlay"></div>
 
@@ -73,20 +73,29 @@
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>With Description</h4>
+                                    <h4>{{$portifolio->name}}</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="widget-content widget-content-area">
                             
                             <div class="row">
+                                @foreach ($portifolio->photos as $photo)
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-4">
+                                    <a href="{{asset("$photo->file")}}" class="withDescriptionGlightbox glightbox-content" data-glightbox="title: {{ $photo->name }}; description: {{ $photo->description }};">
+                                        <img src="{{asset("$photo->file")}}" alt="image" class="img-fluid" />
+                                    </a>
+                                </div>
+                                @endforeach
                                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-4">
                                     <a href="{{Vite::asset('resources/images/lightbox-3.jpeg')}}" class="withDescriptionGlightbox glightbox-content" data-glightbox="title: {{ $portifolio->title }}; description: {{ $portifolio->description }};">
                                         <img src="{{Vite::asset('resources/images/lightbox-3.jpeg')}}" alt="image" class="img-fluid" />
                                     </a>
                                 </div>
                                 
+                                
                             </div>
+                            
                                                             
                         </div>
                     </div>

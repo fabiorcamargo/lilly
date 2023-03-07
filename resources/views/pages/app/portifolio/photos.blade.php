@@ -38,13 +38,14 @@
     </div>
     <!-- /BREADCRUMB -->
 
-    <div class="row mb-4 layout-spacing layout-top-spacing">
 
+    <div class="row mb-4 layout-spacing layout-top-spacing">
         <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
 
-            <div class="widget-content widget-content-area blog-create-section">
+            
                 <form action="{{ getRouterValue(); }}/app/portifolio/photos/{{$portifolio->id}}"  method="post" enctype="multipart/form-data" name="form1" class="was-validated">
                     @csrf
+                    <div class="widget-content widget-content-area blog-create-section mb-4">
                                 <div class="row mb-4">
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" id="name" name="name" onblur="submeter()" placeholder="Nome da Foto">
@@ -58,13 +59,13 @@
                                         <input id="description" name="description" hidden>
                                     </div>
                                 </div>
+                    </div>
 
-                            </div>
                             
-                        </div>
+                      
 
-                        <div class="col-xxl-3 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-xxl-0 mt-4">
-                            <div class="widget-content widget-content-area blog-create-section">
+                        
+                            <div class="widget-content widget-content-area blog-create-section mb-4">
                                 <div class="row">
     
 
@@ -84,11 +85,13 @@
                                                 multiple 
                                               
                                                 data-allow-reorder="true"
-                                                data-max-file-size="3MB"
-                                                data-max-files="3">
+                                                data-max-file-size="10MB"
+                                                data-max-files="20">
                                         </div>
                                         <input name="filepond" value="undefined">
                                     </div>
+                                </div>
+                            </div>
 
                     <div class="col-xxl-12 col-sm-4 col-12 mx-auto">
                         <button class="btn btn-success w-100">Create Post</button>
@@ -98,7 +101,7 @@
             </div>
         </div>
 
-    </div>
+    
     
     <!--  BEGIN CUSTOM SCRIPTS FILE  -->
     <x-slot:footerFiles>
@@ -118,8 +121,8 @@
         <script>
             function submeter()
             {
-                var inpname = document.getElementById('name').value;
-                document.cookie = "name=" + inpname + ";" + "path=/";
+                var inpname = document.getElementById('photo').value;
+                document.cookie = "photo=" + inpname + ";" + "path=/";
             }
         </script>
 
@@ -128,9 +131,11 @@
             const pond = FilePond.create(inputElement);
 
             FilePond.registerPlugin(
-            FilePondPluginImagePreview,
-            FilePondPluginImageExifOrientation,
-            FilePondPluginFileValidateSize,
+                FilePondPluginImageExifOrientation,
+                FilePondPluginImageCrop,
+                FilePondPluginImageResize
+   
+
             //FilePondPluginImageEdit
         );
 

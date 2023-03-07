@@ -86,10 +86,10 @@
     <div class="row">
         @foreach ($portifolios as $portifolio)
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
-            <a href="./app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+            <a href="{{ getRouterValue(); }}/app/portifolio/show/{{$portifolio->id}}" class="card style-2 mb-md-0 mb-4">
                 <img src="{{asset("$portifolio->bg")}}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
-                    <h5 class="card-title mb-3">{{ $portifolio->title }}</h5>
+                    <h5 class="card-title mb-3">{{ $portifolio->name }}</h5>
                     <div class="media mt-4 mb-0 pt-1">
                         <img src="{{Vite::asset('resources/images/profile-5.jpeg')}}" class="card-media-image me-3" alt="">
                         <div class="media-body">

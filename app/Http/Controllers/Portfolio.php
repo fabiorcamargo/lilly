@@ -13,13 +13,13 @@ class Portfolio extends Controller
     public function bg_upload(Request $request)
     {
         
-        $image = $request->file('filepond');
+        $image = $request->file('photos');
         // dd($image);
         $file_name = $image->getClientOriginalName();
          
-         $folder = $_COOKIE['name'];
+         $folder = $_COOKIE['photos'];
 
-            $image = $request->file('filepond');
+            $image = $request->file('photos');
 
             $image->storePubliclyAs('/' . $folder, $file_name, ['visibility'=>'public', 'disk'=>'bg']);
             
@@ -66,14 +66,14 @@ class Portfolio extends Controller
 
     public function create(Request $request){
         //dd($request->all());
-        $photos = PortifolioBg::where('folder', "bg/" . $request->name)
+        $photos = PortifolioBg::where('folder', "bg/" . $request->album)
         ->first();
 
-          //dd($photos->file);
+          //dd($photos);
 
 
         $port = Portifolio::create([
-            'name' => $request->name,
+            'name' => $request->album,
             'description' => $request->description,
             'meta-title' => $request->meta_title,
             'tags' => $request->tags,
@@ -113,12 +113,14 @@ class Portfolio extends Controller
         
         $portifolios = Portifolio::all();
         $i=2;
+
         foreach($portifolios as &$portifolio){
+
             $portifolio->photos = $portifolio->photos()->get();
         }
-        //dd($portifolio);
+        //dd($portifolios);
 
-        return view('pages.app.blog.grid', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolios'));
+        return view('pages.app.portifolio.grid', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolios'));
     }
 
     public function show($id){
@@ -127,6 +129,6 @@ class Portfolio extends Controller
         $portifolio->photos = $portifolio->photos()->get();
         //dd($portifolio);
 
-        return view('pages.app.blog.show', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
+        return view('pages.app.portifolio.show', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
     }
 }
