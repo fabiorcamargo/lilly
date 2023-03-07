@@ -170,6 +170,6 @@ class Portfolio extends Controller
 
     public function grid_redir(){
 
-        return redirect("http://localhost:8992/modern-light-menu/app/portifolio/grid");
+        return redirect("https://lillyalmeida.com.br/modern-light-menu/app/portifolio/grid");
     }
 }
