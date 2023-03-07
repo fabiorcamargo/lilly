@@ -155,8 +155,14 @@ Route::middleware(['auth', 'can:edit'])->group(function () {
         Route::get('/users/cademi/verify', [ApiController::class, 'verify'])->name('cademi.verify');
         Route::get('/users/cademi/course_transf', [ApiController::class, 'course_transf'])->name('cademi.course_transf');
 
-        
-        
+        Route::prefix('/app/portifolio')->group(function () {
+            Route::get('/photos/{id}',[Portfolio::class, 'photo'])->name('portifolio-photo');
+            Route::post('/photos/{id}',[Portfolio::class, 'photo_post'])->name('portifolio-photo');
+            Route::get('/list',[Portfolio::class, 'list'])->name('portifolio-photo');
+            Route::get('/edit/{id}',[Portfolio::class, 'edit'])->name('portifolio-photo');
+            Route::get('/photo/edit/{album}/{id}',[Portfolio::class, 'photo_edit'])->name('portifolio-photo');
+            Route::post('/photo/edit/{album}/{id}',[Portfolio::class, 'photo_save'])->name('portifolio-photo');
+        });
 
 
     
@@ -1313,12 +1319,7 @@ Route::prefix('/app/portifolio')->group(function () {
     Route::post('/create',[Portfolio::class, 'create'])->name('portifolio-create');
     Route::get('/grid',[Portfolio::class, 'grid'])->name('portifolio-grid');
     Route::get('/show/{id}',[Portfolio::class, 'show'])->name('portifolio-show');
-    Route::get('/photos/{id}',[Portfolio::class, 'photo'])->name('portifolio-photo');
-    Route::post('/photos/{id}',[Portfolio::class, 'photo_post'])->name('portifolio-photo');
-    Route::get('/list',[Portfolio::class, 'list'])->name('portifolio-photo');
-    Route::get('/edit/{id}',[Portfolio::class, 'edit'])->name('portifolio-photo');
-    Route::get('/photo/edit/{album}/{id}',[Portfolio::class, 'photo_edit'])->name('portifolio-photo');
-    Route::post('/photo/edit/{album}/{id}',[Portfolio::class, 'photo_save'])->name('portifolio-photo');
+
 });
 
 
@@ -1332,9 +1333,10 @@ Route::prefix('/app/portifolio')->group(function () {
 
 Route::get('/fb/ViewContent', [ConversionApiFB::class, 'ViewContent'])->name('fb-ViewContent');
 Route::get('/form/{id}', [FormController::class, 'redir'])->name('form-redirect');
+Route::get('/grid', [Portfolio::class, 'grid_redir'])->name('portifolio-grid');
 
 Route::get('/', function () {
-    return Redirect::to('https://ead.profissionalizaead.com.br/');;
+    return Redirect::to('/grid');;
 });
 
 require __DIR__.'/auth.php';

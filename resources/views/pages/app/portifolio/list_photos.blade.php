@@ -10,6 +10,22 @@
         <link rel="stylesheet" href="{{asset('plugins/table/datatable/datatables.css')}}">
         @vite(['resources/scss/light/plugins/table/datatable/dt-global_style.scss'])
         @vite(['resources/scss/dark/plugins/table/datatable/dt-global_style.scss'])
+
+        <link rel="stylesheet" href="{{asset('plugins/filepond/filepond.min.css')}}">
+        <link rel="stylesheet" href="{{asset('plugins/filepond/FilePondPluginImagePreview.min.css')}}">
+        <link rel="stylesheet" href="{{asset('plugins/tagify/tagify.css')}}">
+
+        @vite(['resources/scss/light/assets/forms/switches.scss'])
+        @vite(['resources/scss/light/plugins/editors/quill/quill.snow.scss'])
+        @vite(['resources/scss/light/plugins/editors/quill/quill.snow.scss'])
+        @vite(['resources/scss/light/plugins/tagify/custom-tagify.scss'])
+        @vite(['resources/scss/light/assets/apps/blog-create.scss'])
+
+        @vite(['resources/scss/dark/assets/forms/switches.scss'])
+        @vite(['resources/scss/dark/plugins/editors/quill/quill.snow.scss'])
+        @vite(['resources/scss/dark/plugins/editors/quill/quill.snow.scss'])
+        @vite(['resources/scss/dark/plugins/tagify/custom-tagify.scss'])
+        @vite(['resources/scss/dark/assets/apps/blog-create.scss'])
         <!--  END CUSTOM STYLE FILE  -->
     </x-slot>
     <!-- END GLOBAL MANDATORY STYLES -->
@@ -27,6 +43,51 @@
     <!-- /BREADCRUMB -->
 
     <div class="row layout-top-spacing">
+
+        <form action="{{ getRouterValue(); }}/app/portifolio/create"  method="post" enctype="multipart/form-data" name="form1" class="was-validated">
+            @csrf
+                    <div class="widget-content widget-content-area blog-create-section mb-4">
+                            <div class="row mb-4">
+                                <div class="col-sm-12">
+                                    <input type="text" value="{{$portifolio->name}}" class="form-control" id="album" name="album" onblur="submeter()" placeholder="Nome do Album">
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-sm-12">
+                                    <label>Descrição</label>
+                                    <div id="quillEditor"></div>
+                                    <input id="description" name="description" hidden>
+                                </div>
+                            </div>
+                    </div>
+                    
+                    <div class="widget-content widget-content-area blog-create-section mb-4">
+                        <div class="row">
+                            <div class="col-xxl-12 mb-4">
+                                <div class="switch form-switch-custom switch-inline form-switch-primary">
+                                    <input class="switch-input" type="checkbox" role="switch" id="showPublicly" checked>
+                                    <label class="switch-label" for="showPublicly">Público</label>
+                                </div>
+                            </div>
+                            <div class="col-xxl-12 mb-4">
+                                <div class="switch form-switch-custom switch-inline form-switch-primary">
+                                    <input class="switch-input" type="checkbox" role="switch" id="enableComment" checked>
+                                    <label class="switch-label" for="enableComment">Comentários</label>
+                                </div>
+                            </div>
+                            <div class="col-xxl-12 col-md-12 mb-4">
+                                <label for="tags">Tags</label>
+                                <input id="tags" name="tags" class="blog-tags" value="{{$portifolio->tags}}">
+                            </div>
+
+                            <div class="col-xxl-12 col-md-12 mb-4">
+                                <label for="category">Categoria</label>
+                                <input id="category" name="category" placeholder="Choose...">
+                            </div>
+                        </div>
+                    </div>
+        </form>
                 
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
             <div class="widget-content widget-content-area br-8">
@@ -36,8 +97,7 @@
                             <th class="checkbox-column"></th>
                             <th>Fotos</th>
                             <th>Data</th>
-                            <th>Status</th>
-                            <th class="no-content text-center">Action</th>
+                            <th class="no-content text-center">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,561 +114,24 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>{{$photo->created_at}}</td>
-                            <td><span class="badge badge-danger">Draft</span></td>
-                            <td class="text-center">
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink20" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink20">
-                                        {{--<a class="dropdown-item" href="{{ getRouterValue(); }}/app/portifolio/photo/show/{{$portifolio->id}}">Ver</a>--}}
-                                        <a class="dropdown-item" href="{{ getRouterValue(); }}/app/portifolio/photo/edit/{{$portifolio->id}}/{{$photo->id}}">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                            <td>{{$photo->created_at->format('d/m/y')}}</td>
+                            {{--<td><span class="badge badge-danger">Draft</span></td>--}}
+                                <td class="text-center">
+                                    <div class="action-btns">
+                                        <a href="{{asset("$photo->file")}}" class="action-btn btn-view bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Ver">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                        </a>{{--
+                                        <a href="{{ getRouterValue(); }}/app/portifolio/edit/{{$portifolio->id}}" class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Editar">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                        </a>--}}
+                                        <a href="#" class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Pagamentos">
+                                            <x-widgets._w-svg svg="trash"/>
+                                        </a>
                                     </div>
-                                </div>
-                            </td>
+                                </td>
+                            </td>                        
                         </tr>
                         @endforeach
-                        <tr>
-                            <td>2</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-2.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">How to make money blogging</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2021/07/25</td>
-                            <td><span class="badge badge-primary">Recently Updated</span></td>
-                            <td class="text-center">
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>                                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-3.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">33 On-Page SEO Tips</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2021/01/12</td>
-                            <td><span class="badge badge-success">Published</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink4" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink4">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-1.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">How to start an Ad agency</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2022/03/29</td>
-                            <td><span class="badge badge-danger">Draft</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink5" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink5">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-2.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">Elegant Admin Templates on Themeforeset</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2022/11/28</td>
-                            <td><span class="badge badge-primary">Recently Updated</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-3.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">List of Best Wordpress Themes</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2022/12/02</td>
-                            <td><span class="badge badge-success">Published</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink7" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink7">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-1.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">MailChimp VS Aweber</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2022/08/06</td>
-                            <td><span class="badge badge-success">Published</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink8" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink8">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-2.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">Tesla Modal 3 Review</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2022/10/14</td>
-                            <td><span class="badge badge-primary">Recently Updated</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink9" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink9">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-3.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">The Best Web3 Resources</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2021/09/15</td>
-                            <td><span class="badge badge-success">Published</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink10" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink10">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-1.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">List of Best Javascript Frameworks</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2022/12/13</td>
-                            <td><span class="badge badge-danger">Draft</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink11" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink11">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-2.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">14 Tips to improve your photography</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2022/03/03</td>
-                            <td><span class="badge badge-danger">Draft</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink21" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink21">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>13</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-3.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">The ideal work from home office setup</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2022/10/16</td>
-                            <td><span class="badge badge-success">Published</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink12" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink12">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>17</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-1.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">Top haunted houses in Great Britain</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2022/06/09</td>
-                            <td><span class="badge badge-success">Published</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink13" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink13">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>18</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-2.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">29 Most Beautiful Places in the World</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2021/04/10</td>
-                            <td><span class="badge badge-success">Published</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink14" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink14">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-3.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">21 Habits of highly productive people</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2022/09/26</td>
-                            <td><span class="badge badge-danger">Draft</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink15" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink15">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>21</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-1.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">9 Reasons why sugar is bad for your health</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2021/09/03</td>
-                            <td><span class="badge badge-success">Published</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink16" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink16">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>22</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-2.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">7 Effective ways to instantly look more faishonable</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2021/06/25</td>
-                            <td><span class="badge badge-success">Published</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink17" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink17">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>23</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-3.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">How to plan a trip in 7 easy steps</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2021/12/12</td>
-                            <td><span class="badge badge-success">Published</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink18" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink18">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>26</td>
-                            <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar  me-3">
-                                        <img src="{{Vite::asset('resources/images/avatars-1.svg')}}" alt="Avatar" width="64" height="64">
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">14 Tips to improve your photography</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2022/12/22</td>
-                            <td><span class="badge badge-danger">Draft</span></td>
-                            <td class="text-center">
-
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink19" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink19">
-                                        <a class="dropdown-item" href="javascript:void(0);">View</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                    </div>
-                                </div>
-                                
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -621,6 +144,36 @@
         <script type="module" src="{{asset('plugins/global/vendors.min.js')}}"></script>
         @vite(['resources/assets/js/custom.js'])
         <script type="module" src="{{asset('plugins/table/datatable/datatables.js')}}"></script>
+        <script src="{{asset('plugins/editors/quill/quill.js')}}"></script>
+        <script src="{{asset('plugins/filepond/filepond.min.js')}}"></script>
+        <script src="{{asset('plugins/filepond/FilePondPluginFileValidateType.min.js')}}"></script>
+        <script src="{{asset('plugins/filepond/FilePondPluginImageExifOrientation.min.js')}}"></script>
+        <script src="{{asset('plugins/filepond/FilePondPluginImagePreview.min.js')}}"></script>
+        <script src="{{asset('plugins/filepond/FilePondPluginImageCrop.min.js')}}"></script>
+        <script src="{{asset('plugins/filepond/FilePondPluginImageResize.min.js')}}"></script>
+        <script src="{{asset('plugins/filepond/FilePondPluginImageTransform.min.js')}}"></script>
+        <script src="{{asset('plugins/filepond/filepondPluginFileValidateSize.min.js')}}"></script>
+        <script src="{{asset('plugins/tagify/tagify.min.js')}}"></script>
+
+        @vite(['resources/assets/js/apps/blog-create.js'])
+
+        <script>
+            var options = {
+                placeholder: 'Coloque uma descrição do trabalho',
+                theme: 'snow'
+                };
+
+                var editor = new Quill('#quillEditor', options);
+                var justHtmlContent = document.getElementById('description');
+                editor.setText("{!! $portifolio->description !!}");
+                editor.on('text-change', function() {
+                var delta = editor.getContents();
+                var text = editor.getText();
+                var justHtml = editor.root.innerHTML;
+                justHtmlContent.value = justHtml;
+                });           
+        </script>
+
         <script type="module">
             let blogList = $('#blog-list').DataTable({
                 headerCallback:function(e, a, t, n, s) {

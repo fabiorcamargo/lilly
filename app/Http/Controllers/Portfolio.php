@@ -167,4 +167,9 @@ class Portfolio extends Controller
         return redirect(getRouterValue() . "/app/portifolio/show/$portifolio->id");
 
     }
+
+    public function grid_redir(){
+
+        return redirect("http://localhost:8992/modern-light-menu/app/portifolio/grid");
+    }
 }

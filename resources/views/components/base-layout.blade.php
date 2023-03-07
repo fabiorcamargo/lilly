@@ -79,6 +79,7 @@
     
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     {{$headerFiles}}
+    
     <!-- END GLOBAL MANDATORY STYLES -->
 </head>
 <body @class([

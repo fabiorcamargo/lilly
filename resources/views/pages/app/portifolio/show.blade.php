@@ -21,8 +21,7 @@
     <div class="page-meta">
         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">App</a></li>
-                <li class="breadcrumb-item"><a href="#">Blog</a></li>
+                <li class="breadcrumb-item"><a href="/">Início</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Post</li>
             </ol>
         </nav>
@@ -32,9 +31,6 @@
     <div class="row layout-top-spacing">
     
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
-
-
-            <div class="single-post-content">
 
                 <div class="featured-image" style='background-image: url("{{asset("$portifolio->bg")}}");'>
 
@@ -49,10 +45,23 @@
                         <div class="post-meta-info d-flex justify-content-between">
 
                             <div class="media">
-                                <img src="{{Vite::asset('resources/images/profile-12.jpeg')}}" alt="profile">
+                                
                                 <div class="media-body">
-                                    <h5>Lilly Almeida</h5>
-                                    <p>{{ $portifolio->updated_at }}</p>
+                                    <div class="media">
+                                        <span class="avatar-chip bg-danger mb-2 me-4">
+                                            <img src="{{Vite::asset(env('IMG_PORTIFOLIO'))}}" alt="Person" width="96" height="96">
+                                            <span class="text">{{env('NAME_PORTIFOLIO')}}</span>
+                                        </span>
+                                    </div>
+                                    <div class="widget-header">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                                <h4 style="color: white">{{$portifolio->name}}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{--<p>{{ $portifolio->updated_at->format('d/m/y') }}</p>--}}
+                                        {!! $portifolio->description !!}
                                 </div>
                             </div>
 
@@ -77,7 +86,10 @@
                                 </div>
                             </div>
                         </div>
+
+                        
                         <div class="widget-content widget-content-area">
+                            
                             
                             <div class="row">
                                 @foreach ($portifolio->photos as $photo)
@@ -87,13 +99,6 @@
                                     </a>
                                 </div>
                                 @endforeach
-                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-4">
-                                    <a href="{{Vite::asset('resources/images/lightbox-3.jpeg')}}" class="withDescriptionGlightbox glightbox-content" data-glightbox="title: {{ $portifolio->title }}; description: {{ $portifolio->description }};">
-                                        <img src="{{Vite::asset('resources/images/lightbox-3.jpeg')}}" alt="image" class="img-fluid" />
-                                    </a>
-                                </div>
-                                
-                                
                             </div>
                             
                                                             
@@ -101,11 +106,7 @@
                     </div>
                 </div>
 
-                <div class="post-content">
-
-                    {!! $portifolio->description !!}
-
-                </div>
+                
                 
                 
                 <div class="post-info">
@@ -143,8 +144,8 @@
                     
                     <hr>
 
-                    <h2 class="mb-5">Comments <span class="comment-count">(4)</span></h2>
-
+                    {{--<h2 class="mb-5">Comments <span class="comment-count">(4)</span></h2>--}}
+{{--
                     <div class="post-comments">
 
                         <div class="media mb-5 pb-5 primary-comment">
@@ -245,7 +246,8 @@
                         
 
                     </div>
-                    
+                    --}}
+                    {{--}}
                     <div class="post-form mt-5">
 
                         <div class="section add-comment">
@@ -284,13 +286,11 @@
 
                         
                     </div>
+                    --}}
                     
                 </div>
                 
             </div>
-                
-            
-        </div>
         
     </div>
     
