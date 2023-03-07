@@ -34,29 +34,27 @@
                     <thead>
                         <tr>
                             <th class="checkbox-column"></th>
-                            <th>Posts</th>
-                            <th>Date</th>
+                            <th>Fotos</th>
+                            <th>Data</th>
                             <th>Status</th>
                             <th class="no-content text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($portifolios as $portifolio)
-                            
-                        @endforeach
+                        @foreach ($portifolio->photos as $photo)
                         <tr>
-                            <td>{{$portifolio->id}}</td>
+                            <td>{{$photo->name}}</td>
                             <td>
                                 <div class="d-flex justify-content-left align-items-center">
                                     <div class="avatar  me-3">
-                                        <img src="{{asset("$portifolio->bg")}}" alt="Avatar" width="64" height="64">
+                                        <img src="{{asset("$photo->file")}}" alt="Avatar" width="64" height="64">
                                     </div>
                                     <div class="d-flex flex-column">
-                                        <span class="text-truncate fw-bold">{{$portifolio->name}}</span>
+                                        <span class="text-truncate fw-bold">{{$photo->name}}</span>
                                     </div>
                                 </div>
                             </td>
-                            <td>{{$portifolio->created_at}}</td>
+                            <td>{{$photo->created_at}}</td>
                             <td><span class="badge badge-danger">Draft</span></td>
                             <td class="text-center">
                                 <div class="dropdown">
@@ -65,13 +63,14 @@
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink20">
-                                        <a class="dropdown-item" href="{{ getRouterValue(); }}/app/portifolio/show/{{$portifolio->id}}">Ver</a>
-                                        <a class="dropdown-item" href="{{ getRouterValue(); }}/app/portifolio/edit/{{$portifolio->id}}">Edit</a>
+                                        {{--<a class="dropdown-item" href="{{ getRouterValue(); }}/app/portifolio/photo/show/{{$portifolio->id}}">Ver</a>--}}
+                                        <a class="dropdown-item" href="{{ getRouterValue(); }}/app/portifolio/photo/edit/{{$portifolio->id}}/{{$photo->id}}">Edit</a>
                                         <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                                     </div>
                                 </div>
                             </td>
                         </tr>
+                        @endforeach
                         <tr>
                             <td>2</td>
                             <td>

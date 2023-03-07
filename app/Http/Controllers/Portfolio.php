@@ -131,4 +131,40 @@ class Portfolio extends Controller
 
         return view('pages.app.portifolio.show', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
     }
+
+    public function list(){
+        $portifolios = Portifolio::all();
+
+        return view('pages.app.portifolio.list', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolios'));
+    }
+
+    public function edit($id){
+        $portifolio = Portifolio::find($id);
+        $portifolio->photos = $portifolio->photos()->get();
+
+        return view('pages.app.portifolio.list_photos', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
+    }
+
+    public function photo_edit($album, $id){
+        $portifolio = Portifolio::find($album);
+        $portifolio->photo = $portifolio->photos()->where('id', $id)->first();
+
+        //dd($portifolio->photo);
+
+        return view('pages.app.portifolio.photo_edit', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
+    }
+
+    public function photo_save(Request $request, $album, $id){
+        $photo = PortifolioPhoto::find($id);
+        $portifolio = Portifolio::find($album);
+        //dd($request->all());
+        $photo->update([
+            'name' => "$request->name",
+            'description' => "$request->description",
+            'category' => "$request->category"
+        ]);
+
+        return redirect(getRouterValue() . "/app/portifolio/show/$portifolio->id");
+
+    }
 }
