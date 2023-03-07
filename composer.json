@@ -67,8 +67,8 @@
         ],
 
         "post-install-cmd": [
-            "php /var/www/vhosts/alunos.profissionalizaead.com.br/httpdocs/artisan storage:link",
-			"php /var/www/vhosts/alunos.profissionalizaead.com.br/httpdocs/artisan config:clear"
+            "php /var/www/vhosts/lillyalmeida.com.br/httpdocs/artisan storage:link",
+			"php /var/www/vhosts/lillyalmeida.com.br/httpdocs/artisan config:clear"
         ]
         
         

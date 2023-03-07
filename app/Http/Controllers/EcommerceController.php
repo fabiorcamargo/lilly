@@ -53,7 +53,7 @@ class EcommerceController extends Controller
         $tags = CademiTag::all();
         //dd($products[0]->image);
         //dd(explode(",", $products[0]->image));
-        return view('pages.app.eco.edit', ['title' => 'Shop | Profissionaliza EAD', 'breadcrumb' => 'Lista Produtos'], compact('products', 'product', 'categorys', 'sellers', 'flows', 'seller', 'tags'));
+        return view('pages.app.eco.edit', ['title' => "Shop | env('SITE_NAME')", 'breadcrumb' => 'Lista Produtos'], compact('products', 'product', 'categorys', 'sellers', 'flows', 'seller', 'tags'));
     }
 
     public function add_show(){
@@ -63,7 +63,7 @@ class EcommerceController extends Controller
         $flows = RdCrmFlow::all();
         $tags = CademiTag::all();
         //dd($category);
-        return view('pages.app.eco.add', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb'], compact('categorys', 'products', 'flows', 'sellers', 'tags'));
+        return view('pages.app.eco.add', ['title' => env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb'], compact('categorys', 'products', 'flows', 'sellers', 'tags'));
     }
 
     public function add(Request $request){
@@ -165,7 +165,7 @@ class EcommerceController extends Controller
 
         
 
-        return view('pages.app.eco.detail', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb'], compact('product'));
+        return view('pages.app.eco.detail', ['title' => '' . env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb'], compact('product'));
     }
 
     public function checkout_show($id){
@@ -183,11 +183,11 @@ class EcommerceController extends Controller
     
             $product->oprice = ($product->price / (1-$product->percent));
     
-            return view('pages.app.eco.checkout_pay', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'modern-light-menu'], compact('product', 'user'));
+            return view('pages.app.eco.checkout_pay', ['title' => '' . env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'modern-light-menu'], compact('product', 'user'));
 
         } else {
             $product = (EcoProduct::find($id));
-            return view('pages.app.eco.checkout', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'modern-light-menu'], compact('product'));
+            return view('pages.app.eco.checkout', ['title' => '' . env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'modern-light-menu'], compact('product'));
         }
     }
     public function checkout_post($product_id, Request $request){
@@ -312,7 +312,7 @@ class EcommerceController extends Controller
         Auth::login($user);
 
         return redirect(getRouterValue() . "/app/eco/checkout/$product->id/pay/$user->id");
-        //return view('pages.eco.checkout_pay', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'modern-light-menu'], compact('product', 'user'));
+        //return view('pages.eco.checkout_pay', ['title' => '' . env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'modern-light-menu'], compact('product', 'user'));
 
     }
 
@@ -322,7 +322,7 @@ class EcommerceController extends Controller
         $user = User::find($client);
 
         $success = "Seu usuário foi criado, as informações de acesso serão enviadas no seu email.";
-        return view('pages.app.eco.checkout_pay', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'modern-light-menu', 'success' => $success], compact('product', 'user'));
+        return view('pages.app.eco.checkout_pay', ['title' => env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'modern-light-menu', 'success' => $success], compact('product', 'user'));
 
     }
 
@@ -388,10 +388,10 @@ class EcommerceController extends Controller
                 //dd($cobranca);
                 $pix = json_decode($cobranca->body)->pix;
                 $copy = json_decode($cobranca->body)->copy;
-                return view('pages.app.eco.checkout_end', ['title' => 'Profissionaliza EAD | Finalização Pagamento ', 'breadcrumb' => 'checkout end', 'status' => "$status", 'invoice' => $invoice, 'pix' => $pix, 'copy' => $copy]);
+                return view('pages.app.eco.checkout_end', ['title' => env('SITE_NAME') . '| Finalização Pagamento ', 'breadcrumb' => 'checkout end', 'status' => "$status", 'invoice' => $invoice, 'pix' => $pix, 'copy' => $copy]);
             }
             //return redirect(getRouterValue() . "/app/eco/checkout_end");
-            return view('pages.app.eco.checkout_end', ['title' => 'Profissionaliza EAD | Finalização Pagamento ', 'breadcrumb' => 'checkout end', 'status' => "$status", 'invoice' => $invoice]);
+            return view('pages.app.eco.checkout_end', ['title' => env('SITE_NAME') . '| Finalização Pagamento ', 'breadcrumb' => 'checkout end', 'status' => "$status", 'invoice' => $invoice]);
             //dd($cobranca);
 
     }
@@ -415,7 +415,7 @@ class EcommerceController extends Controller
 
         //dd($sales);
 
-        return view('pages.app.eco.list_sales', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb'], compact('sales'));
+        return view('pages.app.eco.list_sales', ['title' => env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb'], compact('sales'));
     }
 
    public function search_sales(Request $request){
@@ -446,7 +446,7 @@ class EcommerceController extends Controller
 
         //dd($sales);
 
-        return view('pages.app.eco.list_sales', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb'], compact('sales'));
+        return view('pages.app.eco.list_sales', ['title' => env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb'], compact('sales'));
     }
 
     public function show(){
@@ -454,7 +454,7 @@ class EcommerceController extends Controller
         $products = EcoProduct::all();
         //dd($products[0]->image);
         //dd(explode(",", $products[0]->image))
-        return view('pages.app.eco.list', ['title' => 'Shop | Profissionaliza EAD', 'breadcrumb' => 'Lista Produtos'], compact('products'));
+        return view('pages.app.eco.list', ['title' => "Shop | env('SITE_NAME')", 'breadcrumb' => 'Lista Produtos'], compact('products'));
     }
     public function shop(Request $request){
         //dd($request->public);
@@ -476,7 +476,7 @@ class EcommerceController extends Controller
         }
         //dd($products[0]->image);
         //dd(explode(",", $products[0]->image));
-        return view('pages.app.eco.shop', ['title' => 'Shop | Profissionaliza EAD', 'breadcrumb' => 'Lista Produtos'], compact('products', 'public'));
+        return view('pages.app.eco.shop', ['title' => 'Shop | ' . env('SITE_NAME'), 'breadcrumb' => 'Lista Produtos'], compact('products', 'public'));
     }
    
     public function edit_save($id, Request $request){

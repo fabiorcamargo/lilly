@@ -7,6 +7,7 @@ use App\Models\PortifolioBg;
 use App\Models\PortifolioPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Str;
 
 class Portfolio extends Controller
 {
@@ -155,8 +156,10 @@ class Portfolio extends Controller
     }
 
     public function photo_save(Request $request, $album, $id){
+        dd($request->all());
         $photo = PortifolioPhoto::find($id);
         $portifolio = Portifolio::find($album);
+        $portifolio->description = Str::markdown($portifolio->description);
         //dd($request->all());
         $photo->update([
             'name' => "$request->name",
@@ -165,7 +168,15 @@ class Portfolio extends Controller
         ]);
 
         return redirect(getRouterValue() . "/app/portifolio/show/$portifolio->id");
+    }
 
+    public function album_save(Request $request, $album){
+        //dd($request->all());
+        //$photo = PortifolioPhoto::find($id);
+        $portifolio = Portifolio::find($album);
+        $portifolio->description = Str::markdown($portifolio->description);
+        //dd($request->all());
+        return redirect(getRouterValue() . "/app/portifolio/show/$portifolio->id");
     }
 
     public function grid_redir(){

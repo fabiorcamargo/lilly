@@ -29,7 +29,12 @@
     <div class="row layout-top-spacing">
                 
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-            <div class="widget-content widget-content-area br-8">
+            
+            <div class="widget-content widget-content-area">
+                <a href="{{ redirect()->back()->getTargetUrl() }}" class="btn btn-primary btn-icon mx-2 mt-2 mb-2 me-4 btn-rounded">
+                    <x-widgets._w-svg svg="arrow-big-left-lines-filled"/>
+                </a>
+        
                 <table id="blog-list" class="table dt-table-hover" style="width:100%">
                     <thead>
                         <tr>

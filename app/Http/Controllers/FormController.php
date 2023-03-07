@@ -21,7 +21,7 @@ class FormController extends Controller
     public function add_show(){
         $states = State::all('abbr', 'id');
         $assets = ChatbotAsset::all();
-        return view('pages.app.campaign.add', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb'], compact('states', 'assets'));
+        return view('pages.app.campaign.add', ['title' => env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb'], compact('states', 'assets'));
     }
 
     public function create(Request $request){
@@ -46,7 +46,7 @@ class FormController extends Controller
 
         $form = FormCampain::find($id);
 
-        return view('pages.app.form.end', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb'], compact('form'));
+        return view('pages.app.form.end', ['title' => env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb'], compact('form'));
     }
 
     public function end_post(Request $request, $id){
@@ -154,7 +154,7 @@ class FormController extends Controller
     
 //            User::first()->where('active', 1)->orderBy('updated_at', 'desc')->paginate(20);
 
-            return view('pages.app.campaign.list', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb'], compact('users'));
+            return view('pages.app.campaign.list', ['title' => env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb'], compact('users'));
 
     }
 
@@ -177,7 +177,7 @@ class FormController extends Controller
       
   //            User::first()->where('active', 1)->orderBy('updated_at', 'desc')->paginate(20);
   
-              return view('pages.app.campaign.list_campaigns', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb'], compact('forms'));
+              return view('pages.app.campaign.list_campaigns', ['title' => env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb'], compact('forms'));
   
       }
 
@@ -207,7 +207,7 @@ class FormController extends Controller
 
         //dd($ontem);
 
-        return view('pages.app.campaign.list_leads', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb', 'campaign' => $campaign], compact('users', 'd'));
+        return view('pages.app.campaign.list_leads', ['title' => env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'campaign' => $campaign], compact('users', 'd'));
 
     }
 }

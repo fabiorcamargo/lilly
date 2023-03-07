@@ -27,7 +27,7 @@ class ChatbotController extends Controller
         $sellers = EcoSeller::where('type', 2)->get();
         $tags = CademiTag::all();
 
-        return view('pages.app.group.add', ['title' => 'Profissionaliza EAD', 'breadcrumb' => 'This Breadcrumb'], compact('tags', 'users', 'sellers'));
+        return view('pages.app.group.add', ['title' => env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb'], compact('tags', 'users', 'sellers'));
 
     }
 

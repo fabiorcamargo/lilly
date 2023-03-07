@@ -26,7 +26,7 @@
     </x-slot>
     <!-- END GLOBAL MANDATORY STYLES -->
 
-    <!-- BREADCRUMB -->
+    <!--
     <div class="page-meta">
         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -36,12 +36,11 @@
             </ol>
         </nav>
     </div>
-    <!-- /BREADCRUMB -->
+    -->
 
 
     <div class="row mb-4 layout-spacing layout-top-spacing">
         <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-
             <img src="{{asset($portifolio->photo->file)}}" alt="image-1" class="full-width img-fluid mt-4 mb-5">
                 <form action="{{ getRouterValue(); }}/app/portifolio/photo/edit/{{$portifolio->id}}/{{$portifolio->photo->id}}"  method="post" enctype="multipart/form-data" name="form1" class="was-validated">
                     @csrf
@@ -158,7 +157,7 @@
 
                 var editor = new Quill('#quillEditor', options);
                 var justHtmlContent = document.getElementById('description');
-                editor.setText("{{$portifolio->photo->description}}");
+                editor.setText("{!!portifolio->photo->description!!}");
                 editor.on('text-change', function() {
                 var delta = editor.getContents();
                 var text = editor.getText();

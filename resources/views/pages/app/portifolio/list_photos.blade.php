@@ -30,7 +30,7 @@
     </x-slot>
     <!-- END GLOBAL MANDATORY STYLES -->
     
-    <!-- BREADCRUMB -->
+    <!-- 
     <div class="page-meta">
         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -40,13 +40,15 @@
             </ol>
         </nav>
     </div>
-    <!-- /BREADCRUMB -->
+   -->
 
-    <div class="row layout-top-spacing">
+   <div class="row mb-4 layout-spacing layout-top-spacing">
 
-        <form action="{{ getRouterValue(); }}/app/portifolio/create"  method="post" enctype="multipart/form-data" name="form1" class="was-validated">
+    <div class="col-xxl-10 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+        <form action="{{ getRouterValue(); }}/app/portifolio/portifolio/save/{{$portifolio->id}}"  method="post" enctype="multipart/form-data" name="form1" class="was-validated">
             @csrf
-                    <div class="widget-content widget-content-area blog-create-section mb-4">
+                    <div class="widget-content widget-content-area blog-create-section mb-4 px-2 pr-2 pt-2">
                             <div class="row mb-4">
                                 <div class="col-sm-12">
                                     <input type="text" value="{{$portifolio->name}}" class="form-control" id="album" name="album" onblur="submeter()" placeholder="Nome do Album">
@@ -60,9 +62,7 @@
                                     <input id="description" name="description" hidden>
                                 </div>
                             </div>
-                    </div>
-                    
-                    <div class="widget-content widget-content-area blog-create-section mb-4">
+                   
                         <div class="row">
                             <div class="col-xxl-12 mb-4">
                                 <div class="switch form-switch-custom switch-inline form-switch-primary">
@@ -87,10 +87,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-xxl-12 col-sm-4 col-12 mx-auto">
+                        <button class="btn btn-success w-100">Salvar</button>
+                    </div>
         </form>
                 
-        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-            <div class="widget-content widget-content-area br-8">
+        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing ">
+            <div class="widget-content widget-content-area br-8 mb-4 px-2 pr-2 pt-2">
                 <table id="blog-list" class="table dt-table-hover" style="width:100%">
                     <thead>
                         <tr>
@@ -120,10 +123,10 @@
                                     <div class="action-btns">
                                         <a href="{{asset("$photo->file")}}" class="action-btn btn-view bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Ver">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                        </a>{{--
-                                        <a href="{{ getRouterValue(); }}/app/portifolio/edit/{{$portifolio->id}}" class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Editar">
+                                        </a>
+                                        <a href="{{ getRouterValue(); }}/app/portifolio/photo/edit/{{$portifolio->id}}/{{$photo->id}}" class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Editar">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
-                                        </a>--}}
+                                        </a>
                                         <a href="#" class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Pagamentos">
                                             <x-widgets._w-svg svg="trash"/>
                                         </a>
@@ -138,6 +141,7 @@
         </div>
 
     </div>
+   </div>
     
     <!--  BEGIN CUSTOM SCRIPTS FILE  -->
     <x-slot:footerFiles>
@@ -158,20 +162,20 @@
         @vite(['resources/assets/js/apps/blog-create.js'])
 
         <script>
-            var options = {
-                placeholder: 'Coloque uma descrição do trabalho',
-                theme: 'snow'
-                };
+            const htmlMurkup = "{!!$portifolio->description!!}"
+            
+            var quill = new Quill('#quillEditor', {
+            modules: { toolbar: true },
+            theme: 'snow'
+            });
+            quill.container.firstChild.innerHTML = htmlMurkup
 
-                var editor = new Quill('#quillEditor', options);
-                var justHtmlContent = document.getElementById('description');
-                editor.setText("{!! $portifolio->description !!}");
-                editor.on('text-change', function() {
+            editor.on('text-change', function() {
                 var delta = editor.getContents();
                 var text = editor.getText();
                 var justHtml = editor.root.innerHTML;
                 justHtmlContent.value = justHtml;
-                });           
+                });
         </script>
 
         <script type="module">

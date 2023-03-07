@@ -159,9 +159,10 @@ Route::middleware(['auth', 'can:edit'])->group(function () {
             Route::get('/photos/{id}',[Portfolio::class, 'photo'])->name('portifolio-photo');
             Route::post('/photos/{id}',[Portfolio::class, 'photo_post'])->name('portifolio-photo');
             Route::get('/list',[Portfolio::class, 'list'])->name('portifolio-photo');
+            Route::post('/list',[Portfolio::class, 'list_save'])->name('portifolio-photo');
             Route::get('/edit/{id}',[Portfolio::class, 'edit'])->name('portifolio-photo');
             Route::get('/photo/edit/{album}/{id}',[Portfolio::class, 'photo_edit'])->name('portifolio-photo');
-            Route::post('/photo/edit/{album}/{id}',[Portfolio::class, 'photo_save'])->name('portifolio-photo');
+            Route::post('/portifolio/save/{album}',[Portfolio::class, 'album_save'])->name('portifolio-photo');
         });
 
 

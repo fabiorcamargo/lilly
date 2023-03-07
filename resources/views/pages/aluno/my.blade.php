@@ -34,7 +34,7 @@
 
     <!-- Analytics -->
 
-
+{{--}}
     
     <div class="row ms-1 mt-4">
         @isset($groups[0])
@@ -145,7 +145,7 @@
     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
         <x-widgets._w-support title="Suporte"/>
     </div>
-    @endif
+    @endif --}}
     
     <!--  BEGIN CUSTOM SCRIPTS FILE  -->
     <x-slot:footerFiles>
