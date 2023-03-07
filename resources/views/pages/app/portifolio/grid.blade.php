@@ -92,7 +92,7 @@
                 <div class="card-body px-0 pb-0">
                     <h5 class="card-title mb-3">{{ $portifolio->name }}</h5>
                     <div class="media mt-4 mb-0 pt-1">
-                        <img src="{{Vite::asset(env('IMG_POST'))}}" class="card-media-image me-3" alt="">
+                        {{--<img src="{{Vite::asset(env('IMG_POST'))}}" class="card-media-image me-3" alt="">--}}
                         <div class="media-body">
                             <h4 class="media-heading mb-1">{{env('NAME_PORTIFOLIO')}}</h4>
                             <p class="media-text">{{ $portifolio->updated_at->format('d/m/y') }}</p>
