@@ -132,7 +132,12 @@
         @endif
 
         <!--  BEGIN MAIN CONTAINER  -->
+        @if (Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show'))  
+        <div class="" id="container">
+        @else
         <div class="main-container " id="container">
+        @endif
+        
             
             <!--  BEGIN LOADER  -->
             <x-layout-overlay/>

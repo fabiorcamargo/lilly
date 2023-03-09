@@ -14,7 +14,7 @@
         <!--  END CUSTOM STYLE FILE  -->
     </x-slot>
     <!-- END GLOBAL MANDATORY STYLES -->
-    
+   
     
     
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4 mt-4">
@@ -42,8 +42,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-    </div>
+            
+   
     {{--
     <div class="row layout-top-spacing">
         <div class="col-lg-3 col-md-3 col-sm-3 mb-4">
@@ -103,6 +103,7 @@
         </div>
         @endforeach
     </div>
+    
     
     <!--  BEGIN CUSTOM SCRIPTS FILE  -->
     <x-slot:footerFiles>
