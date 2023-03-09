@@ -45,7 +45,7 @@
    <div class="row mb-4 layout-spacing layout-top-spacing">
 
     <div class="col-xxl-10 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-
+        <img src="{{asset($portifolio->bg)}}" alt="image-1" class="full-width img-fluid mt-4 mb-5">
         <form action="{{ getRouterValue(); }}/app/portifolio/portifolio/save/{{$portifolio->id}}"  method="post" enctype="multipart/form-data" name="form1" class="was-validated">
             @csrf
                     <div class="widget-content widget-content-area blog-create-section mb-4 px-2 pr-2 pt-2">
