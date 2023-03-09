@@ -86,14 +86,19 @@
                                 <input id="category" name="category" placeholder="Choose...">
                             </div>--}}
                         </div>
+                        <div class="col-xxl-12 col-sm-4 col-12 mx-auto pb-4">
+                            <button class="btn btn-success w-100">Salvar</button>
+                        </div>
                     </div>
-                    <div class="col-xxl-12 col-sm-4 col-12 mx-auto">
-                        <button class="btn btn-success w-100">Salvar</button>
-                    </div>
+                    
         </form>
                 
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing ">
+            
             <div class="widget-content widget-content-area br-8 mb-4 px-2 pr-2 pt-2">
+                <a href="{{ getRouterValue(); }}/app/portifolio/photos/{{$portifolio->id}}" class="btn btn-primary btn-icon mb-2 me-4 btn-rounded">
+                    <x-widgets._w-svg svg="photo-plus"/>
+                    </a>
                 <table id="blog-list" class="table dt-table-hover" style="width:100%">
                     <thead>
                         <tr>
@@ -128,7 +133,7 @@
                                         <a href="{{ getRouterValue(); }}/app/portifolio/photo/edit/{{$portifolio->id}}/{{$photo->id}}" class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Editar">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                         </a>
-                                        <a href="#" class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Pagamentos">
+                                        <a href="#" class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Excluir">
                                             <x-widgets._w-svg svg="trash"/>
                                         </a>
                                     </div>
