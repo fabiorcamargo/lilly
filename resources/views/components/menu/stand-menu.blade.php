@@ -92,7 +92,7 @@
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>APP</span></div>
                     </li>
 
-                    @can('secretary')
+                    @can('secretary'){{--
                     <li class="menu {{ Request::is('*/app/user/*') ? "active" : "" }}">
                         <a href="#user" data-bs-toggle="collapse" aria-expanded="{{ Request::is('*/app/user/*') ? "true" : "false" }}" class="dropdown-toggle">
                             <div class="">
@@ -115,11 +115,11 @@
                             </li>      
                             {{--<li class="{{ Request::routeIs('user-reset') ? 'active' : '' }}">
                                 <a href="{{getRouterValue();}}/app/user/reset"> Resetar Senha </a>
-                            </li>--}}
+                            </li>
                         </ul>
-                    </li>
+                    </li>--}}
                     <li class="menu {{ Request::is('*/app/portifolio/*') ? "active" : "" }}">
-                        <a href="#blog" data-bs-toggle="collapse" aria-expanded="{{ Request::is('*/app/blog/*') ? "true" : "false" }}" class="dropdown-toggle">
+                        <a href="#portifolio" data-bs-toggle="collapse" aria-expanded="{{ Request::is('*/app/portifolio/*') ? "true" : "false" }}" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
                                 <span>Portifólio</span>
@@ -128,24 +128,25 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled {{ Request::is('*/app/blog*') ? "show" : "" }}" id="blog" data-bs-parent="#accordionExample">
+                        <ul class="collapse submenu list-unstyled {{ Request::is('*/app/portifolio*') ? "show" : "" }}" id="portifolio" data-bs-parent="#accordionExample">
                             <li class="{{ Request::routeIs('portifolio-grid') ? 'active' : '' }}">
-                                <a href="{{getRouterValue();}}/app/portifolio/grid"> Grid </a>
+                                <a href="{{getRouterValue();}}/app/portifolio/grid"> Mostrar </a>
                             </li>
                             <li class="{{ Request::routeIs('portifolio-list') ? 'active' : '' }}">
-                                <a href="{{getRouterValue();}}/app/portifolio/list"> List </a>
+                                <a href="{{getRouterValue();}}/app/portifolio/list"> Lista </a>
                             </li>
-                            <li class="{{ Request::routeIs('portifolio-post') ? 'active' : '' }}">
+                            {{--<li class="{{ Request::routeIs('portifolio-post') ? 'active' : '' }}">
                                 <a href="{{getRouterValue();}}/app/portifolio/post"> Post </a>
-                            </li>
+                            </li>--}}
                             <li class="{{ Request::routeIs('portifolio-create') ? 'active' : '' }}">
-                                <a href="{{getRouterValue();}}/app/portifolio/create"> Create </a>
+                                <a href="{{getRouterValue();}}/app/portifolio/create"> Novo </a>
                             </li>                            
-                            <li class="{{ Request::routeIs('portifolio-edit') ? 'active' : '' }}">
+                            {{--<li class="{{ Request::routeIs('portifolio-edit') ? 'active' : '' }}">
                                 <a href="{{getRouterValue();}}/app/portifolio/edit"> Edit </a>
-                            </li>
+                            </li>--}}
                         </ul>
                     </li>
+                    {{--}}
                     <li class="menu {{ Request::is('*/app/group/*') ? "active" : "" }}">
                         <a href="#group" data-bs-toggle="collapse" aria-expanded="{{ Request::is('*/app/group/*') ? "true" : "false" }}" class="dropdown-toggle">
                             <div class="">
@@ -169,7 +170,7 @@
                             </li>      
                             {{--<li class="{{ Request::routeIs('user-reset') ? 'active' : '' }}">
                                 <a href="{{getRouterValue();}}/app/user/reset"> Resetar Senha </a>
-                            </li>--}}
+                            </li>
                         </ul>
                     </li>
                     @endcan
@@ -193,7 +194,7 @@
                             </li>
                             {{--<li class="{{ Request::routeIs('eco-detail') ? 'active' : '' }}">
                                 <a href="{{getRouterValue();}}/app/eco/detail"> Product </a>
-                            </li>--}}
+                            </li>
                             <li class="{{ Request::routeIs('eco-list') ? 'active' : '' }}">
                                 <a href="{{getRouterValue();}}/app/eco/list"> Produtos </a>
                             </li>
@@ -236,7 +237,7 @@
                             </li>
                             @endif
                         </ul>
-                    </li>
+                    </li>--}}
 
                     @endcan
 
