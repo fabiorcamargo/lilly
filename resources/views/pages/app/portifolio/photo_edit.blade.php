@@ -149,24 +149,21 @@
         });
         </script>
 
-        <script>
-            var options = {
-                placeholder: 'Coloque uma descrição do trabalho',
-                theme: 'snow'
-                };
+             <script>
+            const htmlMurkup = "{!!$portifolio->photo->description!!}"
+            
+            var quill = new Quill('#quillEditor', {
+            modules: { toolbar: true },
+            theme: 'snow'
+            });
+            quill.container.firstChild.innerHTML = htmlMurkup
 
-                var editor = new Quill('#quillEditor', options);
-                var justHtmlContent = document.getElementById('description');
-                editor.setText("{!!portifolio->photo->description!!}");
-                editor.on('text-change', function() {
+            editor.on('text-change', function() {
                 var delta = editor.getContents();
                 var text = editor.getText();
                 var justHtml = editor.root.innerHTML;
                 justHtmlContent.value = justHtml;
                 });
-
-               
-                                
         </script>
 
     </x-slot>
