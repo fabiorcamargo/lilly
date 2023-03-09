@@ -54,11 +54,11 @@ class Portfolio extends Controller
                         'description' => '.',
                         'folder' => $folder,
                         'file' => 'photos/' . $folder . "/" . $file_name,
-                        'category' => '.',
+                        'tags' => '.',
                     ]);
                     //dd($user);
 
-                    Cookie::queue('photo', $photo->id , 10);
+                    //Cookie::queue('photo', $photo->id , 10);
 
             return 'photos/' . $folder . "/" . $file_name;
         }
@@ -78,7 +78,7 @@ class Portfolio extends Controller
             'description' => $request->description,
             'meta-title' => $request->meta_title,
             'tags' => $request->tags,
-            'category' => $request->category,
+            'category' => ".",
             'meta-description' => 'Lilly Almeida',
             'bg' => "$photos->file",
         ]);
@@ -104,7 +104,7 @@ class Portfolio extends Controller
         $photo->update([
             'name' => $request->name,
             'description' => $request->description,
-            'category' => $request->category,
+            'tags' => $request->tags,
         ]);
 
         return back();
@@ -156,27 +156,33 @@ class Portfolio extends Controller
     }
 
     public function photo_save(Request $request, $album, $id){
-        dd($request->all());
+        //dd($request->all());
         $photo = PortifolioPhoto::find($id);
         $portifolio = Portifolio::find($album);
-        $portifolio->description = Str::markdown($portifolio->description);
-        //dd($request->all());
-        $photo->update([
-            'name' => "$request->name",
-            'description' => "$request->description",
-            'category' => "$request->category"
-        ]);
-
-        return redirect(getRouterValue() . "/app/portifolio/show/$portifolio->id");
+        
+        $request->photo !== null ? $photo->name = $request->photo : "";
+        $request->description !== null ? $photo->description = $request->description : "";
+        $request->tags !== null ? $photo->tags = $request->tags : "";
+        //dd($photo);
+        $photo->save();
+        return redirect(getRouterValue() . "/app/portifolio/edit/$portifolio->id");
     }
 
     public function album_save(Request $request, $album){
         //dd($request->all());
         //$photo = PortifolioPhoto::find($id);
         $portifolio = Portifolio::find($album);
-        $portifolio->description = Str::markdown($portifolio->description);
+        //$portifolio->description = Str::markdown($portifolio->description);
+        $request->album !== null ? $portifolio->name = $request->album : "";
+        $request->description !== null ? $portifolio->description = $request->description : "";
+        $request->tags !== null ? $portifolio->tags = $request->tags : "";
+        $request->category !== null ? $portifolio->category = $request->category : "";
+        $request->bg !== null ? $portifolio->bg = $request->bg : "";
+
+        $portifolio->save();
         //dd($request->all());
-        return redirect(getRouterValue() . "/app/portifolio/show/$portifolio->id");
+        //dd($portifolio);
+        return redirect(getRouterValue() . "/app/portifolio/edit/$portifolio->id");
     }
 
     public function grid_redir(){

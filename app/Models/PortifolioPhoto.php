@@ -16,7 +16,7 @@ class PortifolioPhoto extends Model
         'description',
         'folder',
         'file',
-        'category',
+        'tags',
     ];
 
 }

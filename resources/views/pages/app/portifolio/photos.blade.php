@@ -40,6 +40,7 @@
 
 
     <div class="row mb-4 layout-spacing layout-top-spacing">
+        <img src="{{asset($portifolio->bg)}}" alt="image-1" class="full-width img-fluid mt-4 mb-5">
         <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
 
             
@@ -48,31 +49,11 @@
                     <div class="widget-content widget-content-area blog-create-section mb-4">
                                 <div class="row mb-4">
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="name" name="name" onblur="submeter()" placeholder="Nome da Foto">
+                                        <h4>Subir fotos para o álbum<br>{{$portifolio->name}}</h4>
                                     </div>
                                 </div>
 
-                                <div class="row mb-4">
-                                    <div class="col-sm-12">
-                                        <label>Descrição</label>
-                                        <div id="quillEditor"></div>
-                                        <input id="description" name="description" hidden>
-                                    </div>
-                                </div>
-                    </div>
-
-                            
-                      
-
-                        
-                            <div class="widget-content widget-content-area blog-create-section mb-4">
-                                <div class="row">
-    
-
-                                    <div class="col-xxl-12 col-md-12 mb-4">
-                                        <label for="category">Categoria</label>
-                                        <input id="category" name="category" placeholder="Choose...">
-                                    </div>
+                                
 
                                     <div class="col-xxl-12 col-md-12 mb-4">
 
@@ -88,14 +69,10 @@
                                                 data-max-file-size="10MB"
                                                 data-max-files="20">
                                         </div>
-                                        <input name="filepond" value="undefined">
+                                        <input name="filepond" hidden>
                                     </div>
                                 </div>
                             </div>
-
-                    <div class="col-xxl-12 col-sm-4 col-12 mx-auto">
-                        <button class="btn btn-success w-100">Create Post</button>
-                    </div>
                 </form>
                 </div>
             </div>
@@ -148,7 +125,7 @@
         FilePond.setOptions({
         server: {
         process: '{{ getRouterValue(); }}/app/portifolio/photos-upload/{{$portifolio->id}}',
-        revert: '{{ getRouterValue(); }}/app/portifolio/photos-delete',
+        revert: '{{ getRouterValue(); }}/app/portifolio/photos-delete/{{$portifolio->id}}',
                 
         headers: {
         'X-CSRF-TOKEN': '{{ csrf_token() }}'

@@ -81,10 +81,10 @@
                                 <input id="tags" name="tags" class="blog-tags" value="{{$portifolio->tags}}">
                             </div>
 
-                            <div class="col-xxl-12 col-md-12 mb-4">
+                            {{--<div class="col-xxl-12 col-md-12 mb-4">
                                 <label for="category">Categoria</label>
                                 <input id="category" name="category" placeholder="Choose...">
-                            </div>
+                            </div>--}}
                         </div>
                     </div>
                     <div class="col-xxl-12 col-sm-4 col-12 mx-auto">
@@ -162,21 +162,27 @@
 
         @vite(['resources/assets/js/apps/blog-create.js'])
 
+                
         <script>
-            const htmlMurkup = "{!!$portifolio->description!!}"
-            
-            var quill = new Quill('#quillEditor', {
-            modules: { toolbar: true },
-            theme: 'snow'
-            });
-            quill.container.firstChild.innerHTML = htmlMurkup
+                    
+            var options = {
+                placeholder: 'Coloque a descrição do produto',
+                theme: 'snow'
+                };
 
-            editor.on('text-change', function() {
+                var editor = new Quill('#quillEditor', options);
+                var justHtmlContent = document.getElementById('description');
+
+                editor.clipboard.dangerouslyPasteHTML(0, <?php echo json_encode($portifolio->description); ?>);
+
+                editor.on('text-change', function() {
                 var delta = editor.getContents();
                 var text = editor.getText();
                 var justHtml = editor.root.innerHTML;
                 justHtmlContent.value = justHtml;
                 });
+
+                
         </script>
 
         <script type="module">

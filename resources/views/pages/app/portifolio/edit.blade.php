@@ -98,10 +98,10 @@
                         <label for="tags">Tags</label>
                         <input id="tags" class="blog-tags" value="Admin, Themeforest, Bootstrap">
                     </div>
-                    <div class="col-xxl-12 col-md-12 mb-4">
+                    {{--<div class="col-xxl-12 col-md-12 mb-4">
                         <label for="category">Category</label>
                         <input id="category" name="category" value="Themeforest, Cork Admin, Dashboard, Vue, Laravel" placeholder="Choose...">
-                    </div>
+                    </div>--}}
                     <div class="col-xxl-12 col-md-12 mb-4">
                         <label for="product-images">Featured Image</label>
                         <div class="multiple-file-upload">

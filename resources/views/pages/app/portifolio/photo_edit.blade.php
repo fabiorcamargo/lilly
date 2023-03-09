@@ -47,7 +47,8 @@
                     <div class="widget-content widget-content-area blog-create-section mb-4">
                                 <div class="row mb-4">
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="name" name="name" value="{{ $portifolio->photo->name }}" onblur="submeter()" placeholder="Nome da Foto">
+                                        <label>Nome</label>
+                                        <input type="text" class="form-control" id="photo" name="photo" value="{{ $portifolio->photo->name }}" onblur="submeter()" placeholder="Nome da Foto">
                                     </div>
                                 </div>
 
@@ -69,8 +70,8 @@
     
 
                                     <div class="col-xxl-12 col-md-12 mb-4">
-                                        <label for="category">Categoria</label>
-                                        <input id="category" name="category" placeholder="Choose..." value="{{$portifolio->photo->category}}">
+                                        <label for="tags">Tags</label>
+                                        <input id="tags" name="tags" class="blog-tags" value="{{$portifolio->photo->tags}}">
                                     </div>
 
                                     
@@ -149,22 +150,27 @@
         });
         </script>
 
-             <script>
-            const htmlMurkup = "{!!$portifolio->photo->description!!}"
-            
-            var quill = new Quill('#quillEditor', {
-            modules: { toolbar: true },
-            theme: 'snow'
-            });
-            quill.container.firstChild.innerHTML = htmlMurkup
+<script>
+                    
+    var options = {
+        placeholder: 'Coloque a descrição do produto',
+        theme: 'snow'
+        };
 
-            editor.on('text-change', function() {
-                var delta = editor.getContents();
-                var text = editor.getText();
-                var justHtml = editor.root.innerHTML;
-                justHtmlContent.value = justHtml;
-                });
-        </script>
+        var editor = new Quill('#quillEditor', options);
+        var justHtmlContent = document.getElementById('description');
+
+        editor.clipboard.dangerouslyPasteHTML(0, <?php echo json_encode($portifolio->photo->description); ?>);
+
+        editor.on('text-change', function() {
+        var delta = editor.getContents();
+        var text = editor.getText();
+        var justHtml = editor.root.innerHTML;
+        justHtmlContent.value = justHtml;
+        });
+
+        
+</script>
 
     </x-slot>
     <!--  END CUSTOM SCRIPTS FILE  -->

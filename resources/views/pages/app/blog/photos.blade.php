@@ -83,10 +83,10 @@
                                         <input id="tags" name="tags" class="blog-tags" value="">
                                     </div>
 
-                                    <div class="col-xxl-12 col-md-12 mb-4">
+                                    {{--<div class="col-xxl-12 col-md-12 mb-4">
                                         <label for="category">Categoria</label>
                                         <input id="category" name="category" placeholder="Choose...">
-                                    </div>
+                                    </div>--}}
 
                                     <div class="col-xxl-12 col-md-12 mb-4">
 
