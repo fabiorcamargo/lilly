@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Portifolio;
 use App\Models\PortifolioBg;
 use App\Models\PortifolioPhoto;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
@@ -109,7 +110,7 @@ class Portfolio extends Controller
     }
 
     public function grid(){
-        
+
         $portifolios = Portifolio::all();
         $i=2;
 
@@ -185,6 +186,19 @@ class Portfolio extends Controller
 
     public function grid_redir(){
 
+        return redirect("https://lillyalmeida.com.br/modern-light-menu/app/portifolio/grid");
+    }
+
+    public function up_bg(){
+        $bg = "/" . User::find(2)->image;
+        //dd($bg);
+        $path = base_path('.env');
+        $test = file_get_contents($path);
+        
+        $ini = [env('IMG_PORTIFOLIO'), env('IMG_POST')];
+        $fim = [$bg, $bg];
+        $status = file_put_contents($path, str_replace($ini, $fim, $test));
+        //dd($status);
         return redirect("https://lillyalmeida.com.br/modern-light-menu/app/portifolio/grid");
     }
 }

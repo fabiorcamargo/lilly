@@ -164,6 +164,7 @@ Route::middleware(['auth', 'can:edit'])->group(function () {
             Route::get('/photo/edit/{album}/{id}',[Portfolio::class, 'photo_edit'])->name('portifolio-photo');
             Route::post('/photo/edit/{album}/{id}',[Portfolio::class, 'photo_save'])->name('portifolio-photo');
             Route::post('/portifolio/save/{album}',[Portfolio::class, 'album_save'])->name('portifolio-photo');
+            Route::get('/up_bg',[Portfolio::class, 'up_bg'])->name('portifolio-up_bg');
         });
 
 
