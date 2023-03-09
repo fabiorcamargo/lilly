@@ -18,12 +18,14 @@
     
     
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4 mt-4">
-                <a href="{{ getRouterValue(); }}/app/portifolio/list" class="btn btn-secondary btn-icon mb-2 me-4 btn-rounded">
+                <a href="{{ getRouterValue(); }}/app/portifolio/list" class="btn btn-secondary btn-icon mb-2 me-4 btn-rounded" data-toggle="tooltip" data-placement="top" title="Menu">
                         <x-widgets._w-svg svg="adjustments-horizontal"/>
                         </a>
-                        <a href="{{ getRouterValue(); }}/app/portifolio/edit_bg" class="btn btn-secondary btn-icon mb-2 me-4 btn-rounded">
-                <x-widgets._w-svg svg="adjustments-horizontal"/>
-                </a>
+                        @if(Auth::user()->role == 7)
+                        <a href="{{ getRouterValue(); }}/app/portifolio/edit_bg" class="btn btn-secondary btn-icon mb-2 me-4 btn-rounded" data-toggle="tooltip" data-placement="top" title="Mudar imagem de fundo">
+                        <x-widgets._w-svg svg="photo-edit"/>
+                        </a>
+                        @endif
                 <div class="featured-image" style='background-image: url("{{asset(env('BG_PORTIFOLIO'))}}");'>
                     
                     <div class="featured-image-overlay"></div>
