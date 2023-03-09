@@ -110,7 +110,8 @@
                             <td>
                                 <div class="d-flex justify-content-left align-items-center">
                                     <div class="avatar  me-3">
-                                        <img src="{{asset("$photo->file")}}" alt="Avatar" width="64" height="64">
+                                        <img src="{{asset($photo->file)}}" alt="Avatar" width="64" height="64">
+                                        <img src="{{asset(env('IMG_POST'))}}" class="card-media-image me-3" alt="">
                                     </div>
                                     <div class="d-flex flex-column">
                                         <span class="text-truncate fw-bold">{{$photo->name}}</span>
