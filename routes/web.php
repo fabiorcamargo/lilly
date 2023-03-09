@@ -165,6 +165,10 @@ Route::middleware(['auth', 'can:edit'])->group(function () {
             Route::post('/photo/edit/{album}/{id}',[Portfolio::class, 'photo_save'])->name('portifolio-photo');
             Route::post('/portifolio/save/{album}',[Portfolio::class, 'album_save'])->name('portifolio-photo');
             Route::get('/up_bg',[Portfolio::class, 'up_bg'])->name('portifolio-up_bg');
+            Route::post('/up_bg',[Portfolio::class, 'save_bg'])->name('portifolio-up_bg');
+            Route::get('/edit_bg', function () {
+                return view('pages.app.portifolio.edit_bg', ['title' => 'this is ome ', 'breadcrumb' => 'This Breadcrumb']);
+            });
         });
 
 

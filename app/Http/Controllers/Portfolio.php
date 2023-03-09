@@ -201,4 +201,21 @@ class Portfolio extends Controller
         //dd($status);
         return redirect("https://lillyalmeida.com.br/modern-light-menu/app/portifolio/grid");
     }
+
+    public function save_bg(Request $request){
+
+        $image = $request->file('filepond');
+            $file_name = $image->getClientOriginalName();
+            $image = $request->file('filepond');
+            //dd($image);
+            $image->storePubliclyAs('/', $file_name, ['visibility'=>'public', 'disk'=>'bg']);
+            $path = base_path('.env');
+            $test = file_get_contents($path);
+            $ini = env('BG_PORTIFOLIO');
+            $fim = "bg/$file_name";
+            file_put_contents($path, str_replace($ini, $fim, $test));
+            
+
+            return redirect("https://lillyalmeida.com.br/modern-light-menu/app/portifolio/grid");
+    }
 }

@@ -19,12 +19,17 @@
     
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4 mt-4">
                 <a href="{{ getRouterValue(); }}/app/portifolio/list" class="btn btn-secondary btn-icon mb-2 me-4 btn-rounded">
+                        <x-widgets._w-svg svg="adjustments-horizontal"/>
+                        </a>
+                        <a href="{{ getRouterValue(); }}/app/portifolio/edit_bg" class="btn btn-secondary btn-icon mb-2 me-4 btn-rounded">
                 <x-widgets._w-svg svg="adjustments-horizontal"/>
                 </a>
                 <div class="featured-image" style='background-image: url("{{asset(env('BG_PORTIFOLIO'))}}");'>
+                    
                     <div class="featured-image-overlay"></div>
                     <div class="post-header">
                         <div class="post-title">
+                            
                             <h1 class="mb-0">{{env('TITULO_PORTIFOLIO')}}</h1>
                         </div>
                         <div class="post-meta-info d-flex justify-content-between">
@@ -34,6 +39,7 @@
                                     <span class="text">{{env('NAME_PORTIFOLIO')}}</span>
                                 </span>
                             </div>
+                            
                             <div class="align-self-center">
                                 <button class="btn btn-success btn-icon btn-share btn-rounded">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
