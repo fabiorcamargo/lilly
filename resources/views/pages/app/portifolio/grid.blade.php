@@ -21,7 +21,7 @@
                 <a href="{{ getRouterValue(); }}/app/portifolio/list" class="btn btn-secondary btn-icon mb-2 me-4 btn-rounded">
                 <x-widgets._w-svg svg="adjustments-horizontal"/>
                 </a>
-                <div class="featured-image" style='background-image: url("{{Vite::asset('resources/images/lightbox-5.jpeg')}}");'>
+                <div class="featured-image" style='background-image: url("{{asset(env('BG_PORTIFOLIO'))}}");'>
                     <div class="featured-image-overlay"></div>
                     <div class="post-header">
                         <div class="post-title">

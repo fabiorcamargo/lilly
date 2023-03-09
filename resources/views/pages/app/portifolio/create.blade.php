@@ -94,7 +94,7 @@
                                                 class="filepond"
                                                 name="photos" 
                                                 id="photos"
-                                                multiple
+                                                
                                               
                                                 data-allow-reorder="true"
                                                 data-max-file-size="10MB"
@@ -153,7 +153,7 @@
         // Select the file input and use 
         // create() to turn it into a pond
         window.multifiles = FilePond.create(
-            document.getElementById('bg-upload')
+            document.getElementById('photos')
         );
             
         FilePond.setOptions({

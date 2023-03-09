@@ -13,14 +13,12 @@ class Portfolio extends Controller
 {
     public function bg_upload(Request $request)
     {
-        
-        $image = $request->file('photos');
-        // dd($image);
+        //dd($request);
+        $image = $request->file('filepond');
+        //dd($image);
         $file_name = $image->getClientOriginalName();
          
          $folder = $_COOKIE['photos'];
-
-            $image = $request->file('photos');
 
             $image->storePubliclyAs('/' . $folder, $file_name, ['visibility'=>'public', 'disk'=>'bg']);
             
