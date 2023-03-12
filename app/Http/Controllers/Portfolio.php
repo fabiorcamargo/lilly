@@ -8,6 +8,7 @@ use App\Models\PortifolioPhoto;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Portfolio extends Controller
@@ -65,12 +66,9 @@ class Portfolio extends Controller
         
 
     public function create(Request $request){
-        //dd($request->all());
+
         $photos = PortifolioBg::where('folder', "bg/" . $request->album)
         ->first();
-
-          //dd($photos);
-
 
         $port = Portifolio::create([
             'name' => $request->album,
@@ -79,7 +77,7 @@ class Portfolio extends Controller
             'tags' => $request->tags,
             'category' => ".",
             'meta-description' => 'Lilly Almeida',
-            'bg' => "$photos->file",
+            'bg' => "photos/sem-foto.gif",
         ]);
 
         return redirect(getRouterValue() . "/app/portifolio/photos/$port->id");
@@ -217,5 +215,63 @@ class Portfolio extends Controller
             
 
             return redirect("https://lillyalmeida.com.br/modern-light-menu/app/portifolio/grid");
+    }
+    public function delete_album(Request $request, $id){
+
+        $portifolio = Portifolio::find($id);
+        
+        if(isset($portifolio)){
+        $path = explode('/', $portifolio->bg);
+        Storage::deleteDirectory($path[0] . "/" . $path[1]);
+
+        $photos = $portifolio->photos()->get();
+        if(isset($photos[0]->file)){
+        $path = explode('/', $photos[0]->file);
+        Storage::deleteDirectory($path[0] . "/" . $path[1]);
+        }
+  
+        foreach($photos as $photo){
+            $photo->delete();
+        }
+        $portifolio->delete();
+        }
+
+        return back();
+    }
+
+    public function delete_photo(Request $request, $id){
+        
+        $photo = PortifolioPhoto::find($id);
+        $portifolio = Portifolio::find($photo->portifolio_id);
+        //dd($portifolio);
+        if($photo->file == $portifolio->bg){
+            if(isset($photo->file)){
+                $path = explode('/', $photo->file);
+                Storage::delete($photo->file);
+                $photo->delete();
+                $portifolio->bg = "photos/sem-foto.gif";
+                $portifolio->save();
+            }
+
+        }else{
+            if(isset($photo->file)){
+                $path = explode('/', $photo->file);
+                Storage::delete($photo->file);
+                $photo->delete();
+            }
+        }
+
+        
+
+        return back();
+    }
+
+    public function album_bg($id){
+        $photo = PortifolioPhoto::find($id);
+        $portifolio = Portifolio::find($photo->portifolio_id);
+        $portifolio->bg = $photo->file;
+        //dd($portifolio);
+        $portifolio->save();
+        return back();
     }
 }

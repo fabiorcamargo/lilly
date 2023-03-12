@@ -158,6 +158,10 @@ Route::middleware(['auth', 'can:edit'])->group(function () {
         Route::prefix('/app/portifolio')->group(function () {
             Route::get('/photos/{id}',[Portfolio::class, 'photo'])->name('portifolio-photo');
             Route::post('/photos/{id}',[Portfolio::class, 'photo_post'])->name('portifolio-photo');
+            
+            Route::delete('/delete/photo/{id}',[Portfolio::class, 'delete_photo'])->name('photo-delete');
+            Route::delete('/delete/{id}',[Portfolio::class, 'delete_album'])->name('portifolio-delete');
+            
             Route::get('/list',[Portfolio::class, 'list'])->name('portifolio-photo');
             Route::post('/list',[Portfolio::class, 'list_save'])->name('portifolio-photo');
             Route::get('/edit/{id}',[Portfolio::class, 'edit'])->name('portifolio-photo');
@@ -1325,6 +1329,7 @@ Route::prefix('/app/portifolio')->group(function () {
     Route::delete('/photos-delete',[Portfolio::class, 'photos_delete'])->name('photos-delete');
     Route::post('/create',[Portfolio::class, 'create'])->name('portifolio-create');
     Route::get('/grid',[Portfolio::class, 'grid'])->name('portifolio-grid');
+    Route::get('/album/bg/{id}',[Portfolio::class, 'album_bg'])->name('portifolio-bg');
     Route::get('/show/{id}',[Portfolio::class, 'show'])->name('portifolio-show');
 
 });
