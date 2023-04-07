@@ -92,7 +92,7 @@ class Portfolio extends Controller
 
         //dd($portifolio);
 
-        return view('pages.app.portifolio.photos', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
+        return view('pages.app.portifolio.photos', ['title' => env('NAME_PORTIFOLIO') . " | " . env('PROFISSAO'), 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
     }
 
     public function photo_post(Request $request, $id){
@@ -121,7 +121,7 @@ class Portfolio extends Controller
         }
         //dd($portifolios);
 
-        return view('pages.app.portifolio.grid', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolios'));
+        return view('pages.app.portifolio.grid', ['title' => env('NAME_PORTIFOLIO') . " | " . env('PROFISSAO'), 'breadcrumb' => 'This Breadcrumb'], compact('portifolios'));
     }
 
     public function show($id){
@@ -130,20 +130,20 @@ class Portfolio extends Controller
         $portifolio->photos = $portifolio->photos()->get();
         //dd($portifolio);
 
-        return view('pages.app.portifolio.show', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
+        return view('pages.app.portifolio.show', ['title' => env('NAME_PORTIFOLIO') . " | " . env('PROFISSAO'), 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
     }
 
     public function list(){
         $portifolios = Portifolio::all();
 
-        return view('pages.app.portifolio.list', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolios'));
+        return view('pages.app.portifolio.list', ['title' => env('NAME_PORTIFOLIO') . " | " . env('PROFISSAO'), 'breadcrumb' => 'This Breadcrumb'], compact('portifolios'));
     }
 
     public function edit($id){
         $portifolio = Portifolio::find($id);
         $portifolio->photos = $portifolio->photos()->get();
 
-        return view('pages.app.portifolio.list_photos', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
+        return view('pages.app.portifolio.list_photos', ['title' => env('NAME_PORTIFOLIO') . " | " . env('PROFISSAO'), 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
     }
 
     public function photo_edit($album, $id){
@@ -152,7 +152,7 @@ class Portfolio extends Controller
 
         //dd($portifolio->photo);
 
-        return view('pages.app.portifolio.photo_edit', ['title' => 'Blog List | CORK - Multipurpose Bootstrap Dashboard Template ', 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
+        return view('pages.app.portifolio.photo_edit', ['title' => env('NAME_PORTIFOLIO') . " | " . env('PROFISSAO'), 'breadcrumb' => 'This Breadcrumb'], compact('portifolio'));
     }
 
     public function photo_save(Request $request, $album, $id){
