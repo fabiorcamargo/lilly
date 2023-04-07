@@ -61,7 +61,7 @@
                                         </div>
                                     </div>
                                     {{--<p>{{ $portifolio->updated_at->format('d/m/y') }}</p>--}}
-                                        {!! $portifolio->description !!}
+                                        
                                 </div>
                             </div>
 
@@ -78,11 +78,23 @@
                 </div>
 
                 <div class="col-lg-12 layout-spacing layout-top-spacing">
+                    <div class="statbox widget box box-shadow">                        
+                        <div class="widget-content widget-content-area">
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                                    {!! $portifolio->description !!}
+                                </div>
+                            </div>                                
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>{{$portifolio->name}}</h4>
+                                    {{--<h4>{{$portifolio->name}}</h4>--}}
                                 </div>
                             </div>
                         </div>
