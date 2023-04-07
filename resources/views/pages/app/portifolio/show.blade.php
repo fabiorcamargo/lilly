@@ -81,7 +81,7 @@
                     <div class="statbox widget box box-shadow">                        
                         <div class="widget-content widget-content-area">
                             <div class="row">
-                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     {!! $portifolio->description !!}
                                 </div>
                             </div>                                
