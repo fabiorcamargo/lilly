@@ -16,6 +16,8 @@
         "bootstrap": "^5.2.1",
         "card": "^2.5.4",
         "filepond": "^4.30.4",
+        "filepond-plugin-image-resize": "^2.0.10",
+        "filepond-plugin-image-transform": "^3.8.7",
         "sass": "^1.55.0"
     }
 }

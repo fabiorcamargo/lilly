@@ -51,11 +51,11 @@
                             <td>
                                 <a href="{{ getRouterValue(); }}/app/portifolio/edit/{{$portifolio->id}}" class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="Editar">
                                 <div class="d-flex justify-content-left align-items-center">
+                                    <x-widgets._w-svg svg="edit"/>
                                     <div class="avatar  me-3">
                                         <img src="{{asset("$portifolio->bg")}}" alt="Avatar" width="64" height="64">
                                     </div>
-                                    <div class="d-flex flex-column">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                    <div class="d-flex flex-column">                                            
                                             <span class="text-truncate fw-bold">{{$portifolio->name}}</span>
                                     </div>
                                 </div>

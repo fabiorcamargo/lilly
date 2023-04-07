@@ -138,7 +138,7 @@
                 var inpname = document.getElementById('album').value;
                 document.cookie = "photos=" + inpname + ";" + "path=/";
             
-
+            
 
             const inputElement = document.getElementById('photos');
             const pond = FilePond.create(inputElement);
@@ -147,8 +147,8 @@
             FilePondPluginImagePreview,
             FilePondPluginImageExifOrientation,
             FilePondPluginFileValidateSize,
-            //FilePondPluginImageEdit
-        );
+            FilePondPluginImageResize,
+            FilePondPluginImageTransform);
 
         // Select the file input and use 
         // create() to turn it into a pond

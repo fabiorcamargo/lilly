@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class Portfolio extends Controller
 {
@@ -41,6 +42,8 @@ class Portfolio extends Controller
                 //dd($portifolio);
                 $image = $request->file('filepond');
                 // dd($image);
+                
+
                 $file_name = $image->getClientOriginalName();
                 
                 $folder = $portifolio->id;
@@ -48,7 +51,7 @@ class Portfolio extends Controller
                     $image = $request->file('filepond');
                     //dd($image);
                     $image->storePubliclyAs('/' . $folder, $file_name, ['visibility'=>'public', 'disk'=>'photos']);
-
+                    
                     $photo = $portifolio->photos()->create([
                         'name' => '.',
                         'description' => '.',
@@ -241,8 +244,12 @@ class Portfolio extends Controller
 
     public function delete_photo(Request $request, $id){
         
+
         $photo = PortifolioPhoto::find($id);
         $portifolio = Portifolio::find($photo->portifolio_id);
+
+        //Image::make($photo->file)->resize(300, 200);
+        //dd($id);
         //dd($portifolio);
         if($photo->file == $portifolio->bg){
             if(isset($photo->file)){

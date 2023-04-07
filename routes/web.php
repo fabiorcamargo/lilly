@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     FilepondController,
     FileUploadController,
     FormController,
+    ImageController,
     Portfolio,
     RdController,
     TemporaryFileController,
@@ -68,6 +69,9 @@ use Illuminate\Support\Facades\Route;
                     Route::delete('/avatar-delete',[TemporaryFileController::class, 'AvatarDelete'])->name('avatar-delete');
                     Route::get('/avatar-correct',[TemporaryFileController::class, 'AvatarCorrect'])->name('avatar-correct');
                     Route::post('/form/code/send', [FormController::class, 'code_verify'])->name('form-code');
+
+                    Route::get('resizeImage', [ImageController::class, 'resizeImage']);
+                    Route::post('resizeImage', [ImageController::class, 'resizeImage'])->name('resizeImage');
 
                     Route::prefix('aluno')->group(function () {
                         Route::get('/first', [UserController::class, 'first'])->name('aluno.first');

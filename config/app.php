@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImageController;
 
 return [
 
@@ -197,6 +199,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -216,6 +219,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Cep' => Canducci\Cep\Facades\Cep::class,
         'Endereco' => Canducci\Cep\Facades\Endereco::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ])->toArray(),
     
 
