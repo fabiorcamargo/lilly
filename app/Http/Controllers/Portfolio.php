@@ -56,7 +56,7 @@ class Portfolio extends Controller
 
                     $thumbnailImage = Image::make($image);
                     
-                    $thumbnailPath = 'storage/app/photos' . '/thumbnail' . "/$folder";
+                    $thumbnailPath = '/thumb' . "/$folder";
                     $thumbnailImage->resize(150,150);
                     $thumbnailImage->save($thumbnailPath.$image->getClientOriginalName()); 
 
