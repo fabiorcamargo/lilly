@@ -296,20 +296,20 @@ class Portfolio extends Controller
     public function create_thumb(){
         $photos = PortifolioPhoto::all();
         foreach($photos as $photo){
-            dd($photo->file);
+            //dd($photo->file);
             $pos = (strripos($photo->file, "/"));
-            $path = (substr($photo->file, 0, $pos));
+            $path = (substr($photo->file, 0, $pos) . "/");
             $name = (substr($photo->file, $pos+1, 200));
-                    
+                   //dd($path); 
                     $thumbnailImage = Image::make($photo->file);
-                    
+                    //dd($thumbnailImage);
                     $cropWidth = $thumbnailImage->width();
                     $cropHeight = $thumbnailImage->height();
                     
                     $thumbnailImage->resize($cropWidth/4,$cropHeight/4);
                     $thumbnailImage->save($path."thumb".$name);
 
-                    dd($photo->file);
+                    //dd($photo->file);
         }
     }
 }
