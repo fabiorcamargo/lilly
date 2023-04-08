@@ -52,8 +52,6 @@ class Portfolio extends Controller
                     Image::make($image->getRealPath());
                     $image->storePubliclyAs('/' . $folder, $file_name, ['visibility'=>'public', 'disk'=>'photos']);
                     
-                    
-                    
                     $thumbnailImage = Image::make($image);
                     $thumbnailPath = "photos/$folder/";
                     
@@ -62,8 +60,6 @@ class Portfolio extends Controller
                     
                     $thumbnailImage->resize($cropWidth/4,$cropHeight/4);
                     $thumbnailImage->save($thumbnailPath."thumb".$image->getClientOriginalName()); 
-
-
 
                     $photo = $portifolio->photos()->create([
                         'name' => '.',
@@ -268,6 +264,7 @@ class Portfolio extends Controller
             if(isset($photo->file)){
                 $path = explode('/', $photo->file);
                 Storage::delete($photo->file);
+                Storage::delete("thumb$photo->file");
                 $photo->delete();
                 $portifolio->bg = "photos/sem-foto.gif";
                 $portifolio->save();
@@ -277,6 +274,7 @@ class Portfolio extends Controller
             if(isset($photo->file)){
                 $path = explode('/', $photo->file);
                 Storage::delete($photo->file);
+                Storage::delete("thumb$photo->file");
                 $photo->delete();
             }
         }
