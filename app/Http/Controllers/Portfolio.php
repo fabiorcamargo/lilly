@@ -55,11 +55,11 @@ class Portfolio extends Controller
                     
 
                     $thumbnailImage = Image::make($image);
-                    $thumbnailPath = "thumb/$folder/";
+                    $thumbnailPath = "photos/$folder/";
                     
                     
                     $thumbnailImage->resize(150,150);
-                    $thumbnailImage->save($thumbnailPath.$image->getClientOriginalName()); 
+                    $thumbnailImage->save($thumbnailPath."thumb".$image->getClientOriginalName()); 
 
 
 
