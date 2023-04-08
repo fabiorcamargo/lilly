@@ -296,7 +296,7 @@ class Portfolio extends Controller
     public function create_thumb($id){
         $photos = PortifolioPhoto::where('portifolio_id', $id)->get();
         foreach($photos as $photo){
-            //dd($photo->file);
+            //dd($photo);
         
             $pos = (strripos($photo->file, "/"));
             $path = (substr($photo->file, 0, $pos) . "/");
@@ -316,4 +316,15 @@ class Portfolio extends Controller
                     return "Concluido";
         
     }
+
+    public function get_thumb($image){
+        
+            $pos = (strripos($image, "/"));
+            $path = (substr($image, 0, $pos) . "/");
+            $name = (substr($image, $pos+1, 200));
+            
+            return ($path . "tumb" . $name);
+        
+    }
+
 }

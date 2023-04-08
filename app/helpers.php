@@ -21,6 +21,16 @@
 //     }
 // }
 
+if (! function_exists('get_thumb')) {
+    function get_thumb($image)
+    {
+        $pos = (strripos($image, "/"));
+            $path = (substr($image, 0, $pos) . "/");
+            $name = (substr($image, $pos+1, 200));
+            
+            return ($path . "tumb" . $name);
+    }
+}
 
 if (! function_exists('layoutConfig')) {
     function layoutConfig() {
