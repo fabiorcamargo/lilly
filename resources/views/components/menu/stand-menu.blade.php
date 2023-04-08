@@ -16,7 +16,7 @@
                 <div class="navbar-nav theme-brand flex-row  text-center">
                     <div class="nav-logo">
                         <div class="nav-item theme-logo">
-                            <a href="{{getRouterValue();}}/dashboard/analytics">
+                            <a href="{{getRouterValue();}}/app/portifolio/grid">
                                 <img src="{{Vite::asset('resources/images/Logo-Lilly-Photo.svg')}}" class="navbar-logo logo-dark" alt="logo">
                                 <img src="{{Vite::asset('resources/images/Logo-Lilly-Photo.svg')}}" class="navbar-logo logo-light" alt="logo">
                             </a>
