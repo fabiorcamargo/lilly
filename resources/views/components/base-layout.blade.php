@@ -33,7 +33,7 @@
     @endif
 
    <!-- Meta Pixel Code -->
-<script>
+<!--script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -48,7 +48,7 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=881551146233401&ev=PageView&noscript=1"
     /></noscript>
-    <!-- End Meta Pixel Code -->
+     End Meta Pixel Code -->
     
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/bootstrap/bootstrap.min.css')}}">
