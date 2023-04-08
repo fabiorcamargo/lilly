@@ -39,6 +39,13 @@
                     <div class="post-header">
                         
                         <div class="post-title">
+                            @if(Auth::check())
+                                @if(Auth::user()->role == 7)
+                                    <a href="{{ getRouterValue(); }}/app/portifolio/edit/{{$portifolio->id}}" class="btn btn-secondary btn-icon mb-2 me-4 btn-rounded" data-toggle="tooltip" data-placement="top" title="Mudar imagem de fundo">
+                                        <x-widgets._w-svg svg="photo-edit"/>
+                                    </a>
+                                @endif
+                            @endif
                             <h1 class="mb-0">{{ $portifolio->title }}</h1>
                         </div>
                         
