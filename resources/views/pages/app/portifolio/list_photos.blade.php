@@ -117,7 +117,11 @@
                                 <div class="d-flex justify-content-left align-items-center">
                                     <x-widgets._w-svg svg="edit"/>
                                     <div class="avatar  me-3">
+                                        @if(file_exists(get_thumb($photo->file)))
+                                        <img src="{{asset(get_thumb($photo->file))}}" alt="Avatar" width="64" height="64">
+                                        @else
                                         <img src="{{asset("$photo->file")}}" alt="Avatar" width="64" height="64">
+                                        @endif
                                     </div>
                                     <div class="d-flex flex-column">
                                             <span class="text-truncate fw-bold">{{$photo->name}}</span>
