@@ -28,7 +28,7 @@ if (! function_exists('get_thumb')) {
             $path = (substr($image, 0, $pos) . "/");
             $name = (substr($image, $pos+1, 200));
             
-            return ($path . "tumb" . $name);
+            return ($path . "thumb" . $name);
     }
 }
 
