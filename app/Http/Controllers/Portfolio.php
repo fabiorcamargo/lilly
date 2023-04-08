@@ -55,7 +55,7 @@ class Portfolio extends Controller
                     
 
                     $thumbnailImage = Image::make($image);
-                    $thumbnailPath = public_path();
+                    $thumbnailPath = 'thumb/';
                     
                     
                     $thumbnailImage->resize(150,150);
