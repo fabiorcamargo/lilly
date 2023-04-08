@@ -71,6 +71,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'thumb' => [
+            'driver' => 'local',
+            'root' => storage_path('app/thumb'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',
@@ -104,6 +111,7 @@ return [
         public_path('product') => storage_path('app/product'),
         public_path('bg') => storage_path('app/bg'),
         public_path('photos') => storage_path('app/photos'),
+        public_path('thumb') => storage_path('app/thumb'),
     ],
 
 ];
