@@ -308,7 +308,7 @@ class Portfolio extends Controller
                     $cropHeight = $thumbnailImage->height();
                     
                     //$thumbnailImage->resize($cropWidth/4,$cropHeight/4);
-                    $thumbnailImage->encode('png', 50)->save($path."thumb".$name);
+                    $thumbnailImage->save($path."thumb".$name, 25);
 
                     //dd($photo->file);
                     //sleep(1);
