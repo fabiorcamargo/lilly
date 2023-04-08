@@ -23,6 +23,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Image;
 
 class TemporaryFileController extends Controller
 {
@@ -134,6 +135,8 @@ class TemporaryFileController extends Controller
                 'folder' => $folder,
                 'file' => $file_name
             ]);
+
+         
             return $folder;
         }
         return '';
@@ -406,13 +409,14 @@ public function AvatarCorrect()
             {
 
                 $produto = ($_COOKIE['name']);
+                
 
                     if($request->hasFile('image')){
                         $image = $request->file('image');
                         $file_name = $image->getClientOriginalName();
-                        $file = $image->storePubliclyAs('/' . $produto , $file_name, ['visibility'=>'public', 'disk'=>'product']);
-                    }
+                        $image->storePubliclyAs('/' . $produto , $file_name, ['visibility'=>'public', 'disk'=>'product']);
 
+                    }
                 
                     return [$produto . '/' .$file_name,];
                 }

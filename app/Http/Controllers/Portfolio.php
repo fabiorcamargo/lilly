@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\Facades\Image;
+
 
 class Portfolio extends Controller
 {
@@ -41,17 +42,25 @@ class Portfolio extends Controller
                 $portifolio = Portifolio::find($id);
                 //dd($portifolio);
                 $image = $request->file('filepond');
+                $file_name = $image->getClientOriginalName();
+                $folder = $portifolio->id;
                 // dd($image);
                 
 
-                $file_name = $image->getClientOriginalName();
-                
-                $folder = $portifolio->id;
-
                     $image = $request->file('filepond');
                     //dd($image);
+                    Image::make($image->getRealPath());
                     $image->storePubliclyAs('/' . $folder, $file_name, ['visibility'=>'public', 'disk'=>'photos']);
                     
+                    
+
+                    $thumbnailImage = Image::make($image);
+                    $thumbnailPath = public_path().'/thumbnail/';
+                    $thumbnailImage->resize(150,150);
+                    $thumbnailImage->save($thumbnailPath.time().$image->getClientOriginalName()); 
+
+
+
                     $photo = $portifolio->photos()->create([
                         'name' => '.',
                         'description' => '.',
