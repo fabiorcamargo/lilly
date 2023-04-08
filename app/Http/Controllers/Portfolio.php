@@ -57,8 +57,8 @@ class Portfolio extends Controller
                     $thumbnailImage = Image::make($image);
                     $thumbnailPath = "photos/$folder/";
                     
-                    $cropWidth = $thumbnailImage->height();
-                    $cropHeight = $thumbnailImage->width();
+                    $cropWidth = $thumbnailImage->width();
+                    $cropHeight = $thumbnailImage->height();
                     
                     $thumbnailImage->resize($cropWidth/4,$cropHeight/4);
                     $thumbnailImage->save($thumbnailPath."thumb".$image->getClientOriginalName()); 
