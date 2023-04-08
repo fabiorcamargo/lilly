@@ -60,7 +60,7 @@ class Portfolio extends Controller
                     $cropWidth = $thumbnailImage->getImageWidth();
                     $cropHeight = $thumbnailImage->getImageHeight();
                     
-                    $thumbnailImage->resize($cropWidth/3,$cropHeight/3);
+                    $thumbnailImage->resize($cropWidth/4,$cropHeight/4);
                     $thumbnailImage->save($thumbnailPath."thumb".$image->getClientOriginalName()); 
 
 
