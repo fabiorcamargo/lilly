@@ -32,7 +32,7 @@
     
         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
 
-                <div class="featured-image" style='background-image: url("{{asset("$portifolio->bg")}}"); vertical-align: top;'>
+                <div class="featured-image" style='background-image: url("{{asset("$portifolio->bg")}}"); background-position: top;'>
 
                     <div class="featured-image-overlay"></div>
 

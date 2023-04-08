@@ -9,7 +9,6 @@ body.layout-dark {
   }
   
   .featured-image {
-    vertical-align: top;
     position: relative;
     background: lightblue url("../../../img/lightbox-2.jpeg") no-repeat fixed center;
     height: 650px;
@@ -20,7 +19,6 @@ body.layout-dark {
     overflow: hidden;
   
     .featured-image-overlay {
-      vertical-align: top;
       position: absolute;
       height: 100%;
       width: 100%;
@@ -163,7 +161,6 @@ body.layout-dark {
   
   @media (max-width: 991px) {
     .featured-image {
-      vertical-align: top;
       height: 350px;
   
       .post-title, .post-meta-info {
