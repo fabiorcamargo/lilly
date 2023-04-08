@@ -58,8 +58,8 @@ class Portfolio extends Controller
                     $cropWidth = $thumbnailImage->width();
                     $cropHeight = $thumbnailImage->height();
                     
-                    $thumbnailImage->resize($cropWidth/4,$cropHeight/4);
-                    $thumbnailImage->save($thumbnailPath."thumb".$image->getClientOriginalName()); 
+                    //$thumbnailImage->resize($cropWidth/4,$cropHeight/4);
+                    $thumbnailImage->save($thumbnailPath."thumb".$image->getClientOriginalName(),50); 
 
                     $photo = $portifolio->photos()->create([
                         'name' => '.',
