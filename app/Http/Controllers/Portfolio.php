@@ -55,9 +55,9 @@ class Portfolio extends Controller
                     
 
                     $thumbnailImage = Image::make($image);
-                    $thumbnailPath = public_path().'/thumbnail/';
+                    $thumbnailPath = '/photos' . "/$folder" . '/thumbnail';
                     $thumbnailImage->resize(150,150);
-                    $thumbnailImage->storePubliclyAs('/' . $folder . '/thumb', $file_name, ['visibility'=>'public', 'disk'=>'photos']);
+                    $thumbnailImage->save($thumbnailPath.$image->getClientOriginalName()); 
 
 
 
