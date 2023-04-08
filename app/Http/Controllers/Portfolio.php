@@ -53,12 +53,14 @@ class Portfolio extends Controller
                     $image->storePubliclyAs('/' . $folder, $file_name, ['visibility'=>'public', 'disk'=>'photos']);
                     
                     
-
+                    
                     $thumbnailImage = Image::make($image);
                     $thumbnailPath = "photos/$folder/";
                     
+                    $cropWidth = $thumbnailImage->getImageWidth();
+                    $cropHeight = $thumbnailImage->getImageHeight();
                     
-                    $thumbnailImage->resize(150,150);
+                    $thumbnailImage->resize($cropWidth/3,$cropHeight/3);
                     $thumbnailImage->save($thumbnailPath."thumb".$image->getClientOriginalName()); 
 
 
