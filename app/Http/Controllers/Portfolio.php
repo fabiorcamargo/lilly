@@ -310,7 +310,7 @@ class Portfolio extends Controller
                     $thumbnailImage->save($path."thumb".$name);
 
                     //dd($photo->file);
-                    sleep(1);
+                    //sleep(1);
         }
     }
 }
