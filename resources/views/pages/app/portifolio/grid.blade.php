@@ -101,7 +101,11 @@
         
             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4 mt-4">
                 <a class="card style-7"  href="{{ getRouterValue(); }}/app/portifolio/show/{{$portifolio->id}}">
+                    @if(file_exists("thumb".$portifolio->bg))
                     <img src="{{asset("$portifolio->bg")}}" class="card-img-top" alt="...">
+                    @else
+                    <img src="{{asset("$portifolio->bg")}}" class="card-img-top" alt="...">
+                    @endif
                     <div class="card-footer">
                         <div class="media mt-2">
                         <img src="{{asset(env('IMG_POST'))}}" class="card-media-image me-3" alt="">

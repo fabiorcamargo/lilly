@@ -113,9 +113,15 @@
                             <div class="row">
                                 @foreach ($portifolio->photos as $photo)
                                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-4">
+                                    @if(file_exists("thumb".$photo->file))
+                                    <a href="{{asset("$photo->file")}}" class="withDescriptionGlightbox glightbox-content" data-glightbox="title: {{ $photo->name }}; description: {{ $photo->description }};">
+                                        <img src="{{asset("thumb$photo->file")}}" alt="image" class="img-fluid" />
+                                    </a>
+                                    @else
                                     <a href="{{asset("$photo->file")}}" class="withDescriptionGlightbox glightbox-content" data-glightbox="title: {{ $photo->name }}; description: {{ $photo->description }};">
                                         <img src="{{asset("$photo->file")}}" alt="image" class="img-fluid" />
                                     </a>
+                                    @endif
                                 </div>
                                 @endforeach
                             </div>
