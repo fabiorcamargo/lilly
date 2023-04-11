@@ -119,7 +119,7 @@
                                         <img src="{{asset(get_thumb($photo->file))}}" alt="image" class="img-fluid" />
                                     </a>
                                     <div itemscope itemtype="https://schema.org/ImageObject" hidden>
-                                        <img alt="{{$photo->name}} | {{env('NAME_PORTIFOLIO')}}" itemprop="contentUrl" src="{{asset(($photo->file))}}" />
+                                        <img alt="{{$photo->name}} | {{env('NAME_PORTIFOLIO')}}" itemprop="contentUrl" content="{{asset(($photo->file))}}" />
                                         <span itemprop="license"> https://lillyalmeida.com.br/ </span><br />
                                         <span itemprop="acquireLicensePage">https://lillyalmeida.com.br/ </span>
                                         <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>
@@ -130,7 +130,7 @@
                                     </div>
                                     @else
                                     <div itemscope itemtype="https://schema.org/ImageObject" hidden>
-                                        <img alt="{{$photo->name}} | {{env('NAME_PORTIFOLIO')}}" itemprop="contentUrl" src="{{asset(($photo->file))}}" />
+                                        <img alt="{{$photo->name}} | {{env('NAME_PORTIFOLIO')}}" itemprop="contentUrl" content="{{asset(($photo->file))}}" />
                                         <span itemprop="license"> https://lillyalmeida.com.br/ </span><br />
                                         <span itemprop="acquireLicensePage">https://lillyalmeida.com.br/ </span>
                                         <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>
