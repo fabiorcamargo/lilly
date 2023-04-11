@@ -134,10 +134,14 @@
             // Real Logins
             !Request::routeIs('login')
         )
-
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{env('GOOGLE_TAG_MANAGER_ID')}}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
         @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show'))  
         <!--  BEGIN NAVBAR  -->
         @isset((Auth::user()->role))
+
         <x-navbar.style-vertical-menu avatar="{{ Auth::user()->image }}" classes="{{($isBoxed ? 'container-xxl' : '')}}"/>
         @endisset
         @unless (Auth::check())
@@ -190,11 +194,6 @@
                     </div>
                 @endif
 
-
-        <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{env('GOOGLE_TAG_MANAGER_ID')}}"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
                 <!--  BEGIN FOOTER  -->
                 <x-layout-footer/>
                 <!--  END FOOTER  -->
