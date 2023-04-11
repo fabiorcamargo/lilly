@@ -60,6 +60,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return Redirect::to('http://134.122.120.118/plesk-site-preview/lillyalmeida.com.br/http/134.122.120.118/ml/app/blog/grid');;
+        return Redirect::to('https://lillyalmeida.com.br');;
     }
 }
