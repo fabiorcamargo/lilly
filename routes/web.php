@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     ImageController,
     Portfolio,
     RdController,
+    SitemapXmlController,
     TemporaryFileController,
     UserController
 };
@@ -1352,11 +1353,13 @@ Route::prefix('/app/portifolio')->group(function () {
 Route::get('/fb/ViewContent', [ConversionApiFB::class, 'ViewContent'])->name('fb-ViewContent');
 Route::get('/form/{id}', [FormController::class, 'redir'])->name('form-redirect');
 Route::get('/grid', [Portfolio::class, 'grid_redir'])->name('portifolio-grid');
+Route::get('/sitemap.xml', [SitemapXmlController::class, 'index']);
 
 Route::get('/', function () {
     $portifolios = Portifolio::all();
     return view('pages.app.portifolio.grid', ['title' => env('NAME_PORTIFOLIO') . " | " . env('PROFISSAO'), 'breadcrumb' => 'This Breadcrumb'], compact('portifolios'));
 })->name('home');
+
 
 require __DIR__.'/auth.php';
 
