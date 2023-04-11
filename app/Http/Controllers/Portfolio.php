@@ -125,7 +125,6 @@ class Portfolio extends Controller
         $i=2;
 
         foreach($portifolios as &$portifolio){
-
             $portifolio->photos = $portifolio->photos()->get();
         }
         //dd($portifolios);
@@ -196,7 +195,7 @@ class Portfolio extends Controller
 
     public function grid_redir(){
 
-        return redirect("https://lillyalmeida.com.br/modern-light-menu/app/portifolio/grid");
+        return redirect("https://lillyalmeida.com.br/ml/app/portifolio/grid");
     }
 
     public function up_bg(){
@@ -209,7 +208,7 @@ class Portfolio extends Controller
         $fim = [$bg, $bg];
         $status = file_put_contents($path, str_replace($ini, $fim, $test));
         //dd($status);
-        return redirect("https://lillyalmeida.com.br/modern-light-menu/app/portifolio/grid");
+        return redirect("https://lillyalmeida.com.br/ml/app/portifolio/grid");
     }
 
     public function save_bg(Request $request){
@@ -226,7 +225,7 @@ class Portfolio extends Controller
             file_put_contents($path, str_replace($ini, $fim, $test));
             
 
-            return redirect("https://lillyalmeida.com.br/modern-light-menu/app/portifolio/grid");
+            return redirect("https://lillyalmeida.com.br/ml/app/portifolio/grid");
     }
     public function delete_album(Request $request, $id){
 

@@ -52,13 +52,14 @@
     <link rel="icon" type="image/x-icon" href="{{Vite::asset('resources/images/Logo-Lilly-Photo.png')}}"/>
     @vite(['resources/scss/layouts/vertical-light-menu/light/loader.scss'])
 
-    @if (Request::is('modern-light-menu/*'))
+    @if (Request::is('ml/*'))
         @vite(['resources/layouts/vertical-light-menu/loader.js'])
-    @elseif ((Request::is('modern-dark-menu/*')))
-        @vite(['resources/layouts/vertical-dark-menu/loader.js'])
-    @elseif ((Request::is('collapsible-menu/*')))
-        @vite(['resources/layouts/collapsible-menu/loader.js'])
-    @else @vite(['resources/layouts/vertical-dark-menu/loader.js'])
+    @elseif ((Request::is('md/*')))
+        @vite(['resources/layouts/vertical-light-menu/loader.js'])
+    @elseif ((Request::is('cm/*')))
+        @vite(['resources/layouts/cm/loader.js'])
+    @else 
+        @vite(['resources/layouts/vertical-light-menu/loader.js'])
     @endif
 
     
@@ -157,7 +158,7 @@
             !Request::routeIs('login')
         )
 
-        @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show'))  
+        @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show', 'home'))  
         <!--  BEGIN NAVBAR  -->
         @isset((Auth::user()->role))
 
@@ -170,7 +171,7 @@
         @endif
 
         <!--  BEGIN MAIN CONTAINER  -->
-        @if (Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show'))  
+        @if (Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show', 'home'))  
         <div class="" id="container">
         @else
         <div class="main-container " id="container">
@@ -181,7 +182,7 @@
             <x-layout-overlay/>
             <!--  END LOADER  -->
 
-            @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show')) 
+            @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show', 'home')) 
             <!--  BEGIN SIDEBAR  -->
             
            
@@ -194,7 +195,7 @@
             @endif
             
             <!--  BEGIN CONTENT AREA  -->
-            @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show'))  
+            @if (!Request::routeIs('blank', 'aluno.first', 'aluno.second', 'aluno.post', 'eco_checkout*', 'form-*', 'portifolio-grid', 'portifolio-show', 'home'))  
             <div id="content" class="main-content {{(Request::routeIs('blank') ? 'ms-0 mt-0' : '')}}">
             @else
             <div id="" class="main-content {{(Request::routeIs('blank') ? 'ms-0 mt-0' : '')}}">
@@ -247,12 +248,12 @@
         <script src="{{asset('plugins/highlight/highlight.pack.js')}}"></script>
         @if ($scrollspy == 1) @vite(['resources/assets/js/scrollspyNav.js']) @endif
 
-        @if (Request::is('modern-light-menu/*'))
+        @if (Request::is('ml/*'))
             @vite(['resources/layouts/vertical-light-menu/app.js'])
-        @elseif ((Request::is('modern-dark-menu/*')))
-            @vite(['resources/layouts/vertical-dark-menu/app.js'])
-        @elseif ((Request::is('collapsible-menu/*')))
-            @vite(['resources/layouts/collapsible-menu/app.js'])
+        @elseif ((Request::is('md/*')))
+        @vite(['resources/layouts/vertical-light-menu/app.js'])
+        @elseif ((Request::is('cm/*')))
+            @vite(['resources/layouts/cm/app.js'])
         @endif
         <!-- END GLOBAL MANDATORY STYLES -->
 

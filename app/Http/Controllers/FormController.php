@@ -105,7 +105,7 @@ class FormController extends Controller
         $send = new ControllersChatbotAsset;
         $send->chatbot_send($form->chip, $numero, $msg);
         
-        return Redirect('/modern-dark-menu/aluno/my');
+        return Redirect('/md/aluno/my');
     }
 
     public function code_verify(Request $request){
@@ -131,7 +131,7 @@ class FormController extends Controller
         }
         
         //dd($fbclid);
-        return redirect("/modern-light-menu/app/form/end/$id");
+        return redirect("/ml/app/form/end/$id");
         //return redirect()->route('form-end-show', ['id' => $id]);
     }
 
