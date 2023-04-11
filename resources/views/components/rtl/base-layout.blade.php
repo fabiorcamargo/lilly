@@ -23,7 +23,7 @@
     <link rel="icon" type="image/x-icon" href="{{Vite::asset('resources/images/favicon.ico')}}"/>
     @vite(['resources/scss/layouts/vertical-light-menu/light/loader.scss'])
 
-    @if (Request::is('rtl/modern-light-menu/*'))
+    @if (Request::is('rtl/ml/*'))
         @vite(['resources/rtl/layouts/vertical-light-menu/loader.js'])
     @elseif ((Request::is('rtl/modern-dark-menu/*')))
         @vite(['resources/rtl/layouts/vertical-dark-menu/loader.js'])
@@ -166,7 +166,7 @@
         <script src="{{asset('plugins-rtl/highlight/highlight.pack.js')}}"></script>
         @if ($scrollspy == 1) @vite(['resources/rtl/assets/js/scrollspyNav.js']) @endif
 
-        @if (Request::is('rtl/modern-light-menu/*'))
+        @if (Request::is('rtl/ml/*'))
             @vite(['resources/rtl/layouts/vertical-light-menu/app.js'])
         @elseif ((Request::is('rtl/modern-dark-menu/*')))
             @vite(['resources/rtl/layouts/vertical-dark-menu/app.js'])

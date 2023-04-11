@@ -63,7 +63,7 @@
             @endphp
 
             {{-- {{Request::getHost()}} --}}
-            {{-- @if (Request::is('modern-light-menu/*'))
+            {{-- @if (Request::is('ml/*'))
                 Hey This is modern-light
             @elseif (Request::is('modern-dark-menu/*'))
                 Hey This is modern-dark

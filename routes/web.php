@@ -18,6 +18,7 @@ use App\Http\Controllers\{
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Asaas\AsaasConectController;
 use App\Http\Controllers\Asaas\AsaasController;
+use App\Models\Portifolio;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -52,7 +53,7 @@ use Illuminate\Support\Facades\Route;
      
     
         $prefixRouters = [
-            'modern-light-menu', 'modern-dark-menu', 'collapsible-menu'
+            'ml', 'md', 'cm'
         ];
     
     
@@ -119,7 +120,7 @@ Route::middleware(['auth', 'can:edit'])->group(function () {
  */
 
     $prefixRouters = [
-        'modern-light-menu', 'modern-dark-menu', 'collapsible-menu'
+        'ml', 'md', 'cm'
     ];
 
 
@@ -757,7 +758,7 @@ Route::middleware(['auth', 'can:edit'])->group(function () {
 Route::prefix('rtl')->group(function () {
 
     $rtlPrefixRouters = [
-        'modern-light-menu', 'modern-dark-menu', 'collapsible-menu'
+        'ml', 'md', 'cm'
     ];
     
     foreach ($rtlPrefixRouters as $rtlPrefixRouter) {
@@ -1247,7 +1248,7 @@ Route::middleware(['auth', 'can:admin', 'can:e-commerce'])->group(function () {
  */
 
     $prefixRouters = [
-        'modern-light-menu', 'modern-dark-menu', 'collapsible-menu'
+        'ml', 'md', 'cm'
     ];
 
 
@@ -1286,7 +1287,7 @@ Route::prefix('/ecommerce')->group(function () {
 
 
 $prefixRouters = [
-    'modern-light-menu', 'modern-dark-menu', 'collapsible-menu'
+    'ml', 'md', 'cm'
 ];
 
 
@@ -1353,8 +1354,9 @@ Route::get('/form/{id}', [FormController::class, 'redir'])->name('form-redirect'
 Route::get('/grid', [Portfolio::class, 'grid_redir'])->name('portifolio-grid');
 
 Route::get('/', function () {
-    return Redirect::to('/grid');;
-});
+    $portifolios = Portifolio::all();
+    return view('pages.app.portifolio.grid', ['title' => env('NAME_PORTIFOLIO') . " | " . env('PROFISSAO'), 'breadcrumb' => 'This Breadcrumb'], compact('portifolios'));
+})->name('home');
 
 require __DIR__.'/auth.php';
 

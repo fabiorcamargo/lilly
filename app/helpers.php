@@ -11,7 +11,7 @@
             
 //             $__getConfiguration = Config::get('app-config.layout.vdm');
             
-//         } else if ($configLayout === 'collapsible-menu') {
+//         } else if ($configLayout === 'cm') {
             
 //             $__getConfiguration = Config::get('app-config.layout.cm');
             
@@ -35,15 +35,15 @@ if (! function_exists('get_thumb')) {
 if (! function_exists('layoutConfig')) {
     function layoutConfig() {
 
-        if (Request::is('modern-light-menu/*')) {
+        if (Request::is('ml/*')) {
 
             $__getConfiguration = Config::get('app-config.layout.vlm');
             
-        } else if (Request::is('modern-dark-menu/*')) {
+        } else if (Request::is('md/*')) {
             
             $__getConfiguration = Config::get('app-config.layout.vdm');
             
-        } else if (Request::is('collapsible-menu/*')) {
+        } else if (Request::is('cm/*')) {
             
             $__getConfiguration = Config::get('app-config.layout.cm');
             
@@ -51,15 +51,15 @@ if (! function_exists('layoutConfig')) {
         
         // RTL
 
-        else if (Request::is('rtl/modern-light-menu/*')) {
+        else if (Request::is('rtl/ml/*')) {
 
             $__getConfiguration = Config::get('app-config.layout.vlm-rtl');
             
-        } else if (Request::is('rtl/modern-dark-menu/*')) {
+        } else if (Request::is('rtl/md/*')) {
             
             $__getConfiguration = Config::get('app-config.layout.vdm-rtl');
             
-        } else if (Request::is('rtl/collapsible-menu/*')) {
+        } else if (Request::is('rtl/cm/*')) {
             
             $__getConfiguration = Config::get('app-config.layout.cm-rtl');
             
@@ -74,7 +74,8 @@ if (! function_exists('layoutConfig')) {
             $__getConfiguration = Config::get('app-config.layout.vlm');
             
         }
-
+        
+        $__getConfiguration = Config::get('app-config.layout.vlm');
         return $__getConfiguration;
     }
 }
@@ -84,34 +85,34 @@ if (! function_exists('layoutConfig')) {
 if (!function_exists('getRouterValue')) {
     function getRouterValue() {
         
-        if (Request::is('modern-light-menu/*')) {
+        if (Request::is('ml/*')) {
             
-            $__getRoutingValue = '/modern-light-menu';
+            $__getRoutingValue = '/ml';
             
-        } else if (Request::is('modern-dark-menu/*')) {
+        } else if (Request::is('md/*')) {
             
-            $__getRoutingValue = '/modern-dark-menu';
+            $__getRoutingValue = '/md';
             
-        } else if (Request::is('collapsible-menu/*')) {
+        } else if (Request::is('cm/*')) {
             
-            $__getRoutingValue = '/collapsible-menu';
+            $__getRoutingValue = '/cm';
 
         }
 
 
         // RTL
 
-        else if (Request::is('rtl/modern-light-menu/*')) {
+        else if (Request::is('rtl/ml/*')) {
 
-            $__getRoutingValue = '/rtl/modern-light-menu';
+            $__getRoutingValue = '/rtl/ml';
             
-        } else if (Request::is('rtl/modern-dark-menu/*')) {
+        } else if (Request::is('rtl/md/*')) {
             
-            $__getRoutingValue = '/rtl/modern-dark-menu';
+            $__getRoutingValue = '/rtl/md';
             
-        } else if (Request::is('rtl/collapsible-menu/*')) {
+        } else if (Request::is('rtl/cm/*')) {
             
-            $__getRoutingValue = '/rtl/collapsible-menu';
+            $__getRoutingValue = '/rtl/cm';
             
         }
 
@@ -120,11 +121,11 @@ if (!function_exists('getRouterValue')) {
 
         else if (Request::is('login')) {
 
-            $__getRoutingValue = '/modern-light-menu';
+            $__getRoutingValue = '/ml';
             
         }
-        
-        
+        $__getConfiguration = Config::get('app-config.layout.vlm');
+        $__getRoutingValue = '/ml';
         return $__getRoutingValue;
     }
 }

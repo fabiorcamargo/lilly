@@ -34,11 +34,11 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if(empty(Auth::user()->first)){
-        $home = '/modern-light-menu/aluno/first';
+        $home = '/ml/aluno/first';
         }else{    
 
         if ((Auth::check())){
-        $home = '/modern-light-menu/aluno/my';    
+        $home = '/ml/aluno/my';    
         }
         
     }
@@ -60,6 +60,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return Redirect::to('http://134.122.120.118/plesk-site-preview/lillyalmeida.com.br/http/134.122.120.118/modern-light-menu/app/blog/grid');;
+        return Redirect::to('http://134.122.120.118/plesk-site-preview/lillyalmeida.com.br/http/134.122.120.118/ml/app/blog/grid');;
     }
 }

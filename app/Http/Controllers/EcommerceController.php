@@ -183,11 +183,11 @@ class EcommerceController extends Controller
     
             $product->oprice = ($product->price / (1-$product->percent));
     
-            return view('pages.app.eco.checkout_pay', ['title' => '' . env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'modern-light-menu'], compact('product', 'user'));
+            return view('pages.app.eco.checkout_pay', ['title' => '' . env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'ml'], compact('product', 'user'));
 
         } else {
             $product = (EcoProduct::find($id));
-            return view('pages.app.eco.checkout', ['title' => '' . env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'modern-light-menu'], compact('product'));
+            return view('pages.app.eco.checkout', ['title' => '' . env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'ml'], compact('product'));
         }
     }
     public function checkout_post($product_id, Request $request){
@@ -312,7 +312,7 @@ class EcommerceController extends Controller
         Auth::login($user);
 
         return redirect(getRouterValue() . "/app/eco/checkout/$product->id/pay/$user->id");
-        //return view('pages.eco.checkout_pay', ['title' => '' . env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'modern-light-menu'], compact('product', 'user'));
+        //return view('pages.eco.checkout_pay', ['title' => '' . env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'ml'], compact('product', 'user'));
 
     }
 
@@ -322,7 +322,7 @@ class EcommerceController extends Controller
         $user = User::find($client);
 
         $success = "Seu usuário foi criado, as informações de acesso serão enviadas no seu email.";
-        return view('pages.app.eco.checkout_pay', ['title' => env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'modern-light-menu', 'success' => $success], compact('product', 'user'));
+        return view('pages.app.eco.checkout_pay', ['title' => env('SITE_NAME'), 'breadcrumb' => 'This Breadcrumb', 'prefixRouters' => 'ml', 'success' => $success], compact('product', 'user'));
 
     }
 
