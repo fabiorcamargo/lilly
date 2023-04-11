@@ -126,7 +126,7 @@
                                           <meta itemprop="name" content="{{env('NAME_PORTIFOLIO')}}" />
                                         </span>
                                         <span itemprop="copyrightNotice">"{{env('NAME_PORTIFOLIO')}}"</span>
-                                        <span itemprop="creditText">"{{env('NAME_PORTIFOLIO')}} | "{{env('PROFISSAO')}}""</span>
+                                        <span itemprop="creditText">"{{env('NAME_PORTIFOLIO')}} | {{env('PROFISSAO')}}"</span>
                                     </div>
                                     @else
                                     <div itemscope itemtype="https://schema.org/ImageObject" hidden>
@@ -137,7 +137,7 @@
                                           <meta itemprop="name" content="{{env('NAME_PORTIFOLIO')}}" />
                                         </span>
                                         <span itemprop="copyrightNotice">"{{env('NAME_PORTIFOLIO')}}"</span>
-                                        <span itemprop="creditText">"{{env('NAME_PORTIFOLIO')}} | "{{env('PROFISSAO')}}""</span>
+                                        <span itemprop="creditText">"{{env('NAME_PORTIFOLIO')}} | {{env('PROFISSAO')}}"</span>
                                     </div>
                                     <a href="{{asset("$photo->file")}}" class="withDescriptionGlightbox glightbox-content" data-glightbox="title: {{ $photo->name }}; description: {{ $photo->description }};">
                                         <img src="{{asset("$photo->file")}}" alt="image" class="img-fluid" />
