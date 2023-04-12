@@ -22,6 +22,7 @@
     <meta name="google-site-verification" content="RobJBJHNbBTciwvhcTws1YfKNCYgTQgS1qXb0lElDx8" />
 
     <meta property="og:title" content="{{env('SITE_NAME')}} | {{env('NAME_PORTIFOLIO')}}">
+    <meta property="og:type" content="website" />
     <meta property="og:description" content="{{env('DESC_PORTIFOLIO')}}">
     <meta property="og:image" content="{{asset(env('IMG_PORTIFOLIO'))}}">
     <meta property="og:url" content="https://lillyalmeida.com.br/">
