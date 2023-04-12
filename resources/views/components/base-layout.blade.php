@@ -26,11 +26,14 @@
     <meta property="og:description" content="{{env('DESC_PORTIFOLIO')}}">
     <meta property="og:image" content="{{asset(env('IMG_PORTIFOLIO'))}}">
     <meta property="og:url" content="https://lillyalmeida.com.br/">
+    <meta property="og:image:alt" content="Lilly Almeida Fotografia" />
+    
 
     <meta name="twitter:title" content="{{env('SITE_NAME')}} | {{env('NAME_PORTIFOLIO')}}">
     <meta name="twitter:description" content="{{env('DESC_PORTIFOLIO')}}">
     <meta name="twitter:url" content="https://lillyalmeida.com.br/">
     <meta name="twitter:card" content="summary">
+    <meta name="twitter:image:alt" content="Lilly Almeida Fotografia">
 
 
     <script type="application/ld+json">
