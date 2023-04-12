@@ -23,8 +23,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="RobJBJHNbBTciwvhcTws1YfKNCYgTQgS1qXb0lElDx8" />
 
-    <meta name="keywords" content="curso técnico, senac, segurança do trabalho, logística, meio ambiente, administração, informática, transações imobiliárias, jogos digitais, design de interiores">
-    
+    <meta name="keywords" content="fotografia, fotografo, fotografa, fotografo profissional, fotografia de mulher, fotografia de estudio, fotografia ar livre, fotografia familia, fotografia digital">
+    <meta name='description' content='Olá! Meu nome é Lilly Almeida, sou uma fotógrafa e tenho uma paixão por capturar a beleza e a personalidade de cada pessoa em minhas fotos.'>
+
     <meta property="og:title" content="{{env('SITE_NAME')}} | {{env('NAME_PORTIFOLIO')}}">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:type" content="article">
@@ -34,8 +35,8 @@
     <meta property="og:url" content="https://lillyalmeida.com.br/">
     <meta property="og:image:alt" content="Lilly Almeida Fotografia" />
 
-    <meta property="article:author" content="https://www.facebook.com/ginead.cursos">
-    <meta property="article:publisher" content="https://www.facebook.com/ginead.cursos">
+    <meta property="article:author" content="https://www.facebook.com/LillyAlmeida.fotografia/">
+    <meta property="article:publisher" content="https://www.facebook.com/LillyAlmeida.fotografia/">
     
 
     <meta name="twitter:title" content="{{env('SITE_NAME')}} | {{env('NAME_PORTIFOLIO')}}">
