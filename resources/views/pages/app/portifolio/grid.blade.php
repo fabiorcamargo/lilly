@@ -108,7 +108,7 @@
                     @endif
                     <div class="card-footer">
                         <div class="media mt-2">
-                        <img src="{{asset(env('IMG_POST'))}}" class="card-media-image me-3" alt="">
+                        <img src="{{asset(env('IMG_POST'))}}" class="card-media-image me-3" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
                         <h5 class="card-title">{{ $portifolio->name }}</h5>
                         </div>
                         <p class="card-text pt-4">Ver mais</p>
