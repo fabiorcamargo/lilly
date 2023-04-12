@@ -17,16 +17,23 @@
 <head>
    
     <meta charset="utf-8">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="RobJBJHNbBTciwvhcTws1YfKNCYgTQgS1qXb0lElDx8" />
 
     <meta property="og:title" content="{{env('SITE_NAME')}} | {{env('NAME_PORTIFOLIO')}}">
-    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="{{env('SITE_NAME')}} | {{env('NAME_PORTIFOLIO')}}">
     <meta property="og:description" content="{{env('DESC_PORTIFOLIO')}}">
     <meta property="og:image" content="{{asset(env('IMG_PORTIFOLIO'))}}">
     <meta property="og:url" content="https://lillyalmeida.com.br/">
     <meta property="og:image:alt" content="Lilly Almeida Fotografia" />
+
+    <meta property="article:author" content="https://www.facebook.com/ginead.cursos">
+    <meta property="article:publisher" content="https://www.facebook.com/ginead.cursos">
     
 
     <meta name="twitter:title" content="{{env('SITE_NAME')}} | {{env('NAME_PORTIFOLIO')}}">
@@ -35,6 +42,13 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image:alt" content="Lilly Almeida Fotografia">
 
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "gnik9hr9in");
+    </script>
 
     <script type="application/ld+json">
         {
