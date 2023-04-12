@@ -23,6 +23,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="RobJBJHNbBTciwvhcTws1YfKNCYgTQgS1qXb0lElDx8" />
 
+    <meta name="keywords" content="curso técnico, senac, segurança do trabalho, logística, meio ambiente, administração, informática, transações imobiliárias, jogos digitais, design de interiores">
+    
     <meta property="og:title" content="{{env('SITE_NAME')}} | {{env('NAME_PORTIFOLIO')}}">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:type" content="article">
