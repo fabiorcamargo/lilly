@@ -14,6 +14,8 @@
 
         <link rel="stylesheet" href="{{asset('plugins/glightbox/glightbox.min.css')}}">
         <!--  END CUSTOM STYLE FILE  -->
+
+        
     </x-slot>
     <!-- END GLOBAL MANDATORY STYLES -->
     

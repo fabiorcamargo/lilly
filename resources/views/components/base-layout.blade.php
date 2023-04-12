@@ -20,6 +20,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="RobJBJHNbBTciwvhcTws1YfKNCYgTQgS1qXb0lElDx8" />
+
+    <meta property="og:title" content="{{env('SITE_NAME')}} | {{env('NAME_PORTIFOLIO')}}">
+    <meta property="og:description" content="{{env('DESC_PORTIFOLIO')}}">
+    <meta property="og:image" content="{{asset(env('IMG_PORTIFOLIO'))}}">
+    <meta property="og:url" content="https://lillyalmeida.com.br/">
+
+    <meta name="twitter:title" content="{{env('SITE_NAME')}} | {{env('NAME_PORTIFOLIO')}}">
+    <meta name="twitter:description" content="{{env('DESC_PORTIFOLIO')}}">
+    <meta name="twitter:url" content="https://lillyalmeida.com.br/">
+    <meta name="twitter:card" content="summary">
+
+
     <script type="application/ld+json">
         {
           "@context": "https://schema.org",
