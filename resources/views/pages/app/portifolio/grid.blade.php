@@ -104,7 +104,7 @@
                     @if(file_exists(get_thumb($portifolio->bg)))
                     <img src="{{asset(get_thumb($portifolio->bg))}}" class="card-img-top" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
                     @else
-                    <img src="{{asset("$portifolio->bg")}}" class="card-img-top" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
+                    <img data-lazysrc="{{asset("$portifolio->bg")}}" class="card-img-top" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
                     @endif
                     <div class="card-footer">
                         <div class="media mt-2">
@@ -122,6 +122,24 @@
     
     <!--  BEGIN CUSTOM SCRIPTS FILE  -->
     <x-slot:footerFiles>
+
+    <script>
+ 
+            function ReLoadImages(){
+                $('img[data-lazysrc]').each( function(){
+                    //* set the img src from data-src
+                    $( this ).attr( 'src', $( this ).attr( 'data-lazysrc' ) );
+                    }
+                );
+            }
+
+            document.addEventListener('readystatechange', event => {
+                if (event.target.readyState === "interactive") {  //or at "complete" if you want it to execute in the most last state of window.
+                    ReLoadImages();
+                }
+            });
+
+    </script>
 
     </x-slot>
     <!--  END CUSTOM SCRIPTS FILE  -->

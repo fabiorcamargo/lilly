@@ -292,8 +292,33 @@ class Portfolio extends Controller
         return back();
     }
 
-    public function create_thumb($id){
-        $photos = PortifolioPhoto::where('portifolio_id', $id)->get();
+    public function resizeImage()
+    {
+
+        $photos = PortifolioPhoto::all();
+
+        //dd($photos);
+        foreach($photos as $photo){
+            //dd($photo);
+        
+            $pos = (strripos($photo->file, "/"));
+            $path = (substr($photo->file, 0, $pos) . "/");
+            $name = (substr($photo->file, $pos+1, 200));
+                   //dd($path); 
+                    $imgFile = Image::make($photo->file);
+	   
+        $imgFile->resize(500, 500, function ($constraint) {
+		    $constraint->aspectRatio();
+		})->save($path."thumb".$name);
+        
+    }
+    }
+
+    public function create_thumb(){
+        
+        $photos = PortifolioPhoto::all();
+
+        //dd($photos);
         foreach($photos as $photo){
             //dd($photo);
         
