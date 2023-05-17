@@ -39,7 +39,7 @@
                         <div class="post-meta-info d-flex justify-content-between">
                             <div class="media">
                                 <span class="avatar-chip bg-danger mb-2 me-4">
-                                    <img src="{{asset(env('IMG_PORTIFOLIO'))}}" alt="Person" width="96" height="96">
+                                    <img src="{{asset(App\Models\User::where('id', 2)->first()->image)}}" alt="Person" width="96" height="96">
                                     <span class="text">{{env('NAME_PORTIFOLIO')}}</span>
                                 </span>
                             </div>
