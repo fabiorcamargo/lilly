@@ -292,10 +292,10 @@ class Portfolio extends Controller
         return back();
     }
 
-    public function resizeImage()
+    public function resizeImage($id)
     {
 
-        $photos = PortifolioPhoto::all();
+        $photos = PortifolioPhoto::where('portifolio_id', $id)->get();
 
         //dd($photos);
         foreach($photos as $photo){
@@ -307,7 +307,7 @@ class Portfolio extends Controller
                    //dd($path); 
                     $imgFile = Image::make($photo->file);
 	   
-        $imgFile->resize(500, 500, function ($constraint) {
+        $imgFile->resize(300, 300, function ($constraint) {
 		    $constraint->aspectRatio();
 		})->save($path."thumb".$name);
         
