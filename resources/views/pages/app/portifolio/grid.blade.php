@@ -102,9 +102,9 @@
             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4 mt-4">
                 <a class="card style-7"  href="{{ getRouterValue(); }}/app/portifolio/show/{{$portifolio->id}}">
                     @if(file_exists(get_thumb($portifolio->bg)))
-                    <img src="{{asset(get_thumb($portifolio->bg))}}" class="card-img-top" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
+                    <img class="card-img-top lazy-load" data-src="{{asset(get_thumb($portifolio->bg))}}" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
                     @else
-                    <img data-lazysrc="{{asset("$portifolio->bg")}}" class="card-img-top" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
+                    <img class="card-img-top lazy-load" data-src="{{asset("$portifolio->bg")}}" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
                     @endif
                     <div class="card-footer">
                         <div class="media mt-2">
@@ -125,19 +125,27 @@
 
     <script>
  
-            function ReLoadImages(){
-                $('img[data-lazysrc]').each( function(){
-                    //* set the img src from data-src
-                    $( this ).attr( 'src', $( this ).attr( 'data-lazysrc' ) );
-                    }
-                );
+            function preload_image(img) {
+            img.src = img.dataset.src;
+            console.log(`Loading ${img.src}`);
             }
-
-            document.addEventListener('readystatechange', event => {
-                if (event.target.readyState === "interactive") {  //or at "complete" if you want it to execute in the most last state of window.
-                    ReLoadImages();
+            const config_opts = {
+            rootMargin: '200px 200px 200px 200px'
+            };
+            let observer = new IntersectionObserver(function(entries, self) {
+            for(entry of entries) { 
+                if(entry.isIntersecting) {
+                let elem = entry.target;
+                preload_image(elem);   
+                self.unobserve(elem);
                 }
-            });
+            }
+            }, config_opts);
+
+            let images = document.querySelectorAll('img.lazy-load');
+            for(image of images) {
+            observer.observe(image);
+            }
 
     </script>
 

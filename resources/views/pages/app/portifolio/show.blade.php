@@ -118,7 +118,7 @@
                                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-4">
                                     @if(file_exists(get_thumb($photo->file)))
                                     <a href="{{asset("$photo->file")}}" class="withDescriptionGlightbox glightbox-content" data-glightbox="title: {{ $photo->name }}; description: {{ $photo->description }};">
-                                        <img src="{{asset(get_thumb($photo->file))}}" alt="image" class="img-fluid" />
+                                        <img class="img-fluid lazy-load" data-src="{{asset(get_thumb($photo->file))}}" alt="image"/>
                                     </a>
                                     <div itemscope itemtype="https://schema.org/ImageObject" hidden>
                                         <img alt="{{$photo->name}} | {{env('NAME_PORTIFOLIO')}}" itemprop="contentUrl" content="{{asset(($photo->file))}}" />
@@ -142,7 +142,7 @@
                                         <span itemprop="creditText">"{{env('NAME_PORTIFOLIO')}} | {{env('PROFISSAO')}}"</span>
                                     </div>
                                     <a href="{{asset("$photo->file")}}" class="withDescriptionGlightbox glightbox-content" data-glightbox="title: {{ $photo->name }}; description: {{ $photo->description }};">
-                                        <img src="{{asset("$photo->file")}}" alt="image" class="img-fluid" />
+                                        <img class="img-fluid lazy-load" data-src="{{asset("$photo->file")}}" alt="image" class="img-fluid" />
                                     </a>
                                     @endif
                                 </div>
@@ -346,6 +346,33 @@
     <x-slot:footerFiles>
         <script src="{{asset('plugins/glightbox/glightbox.min.js')}}"></script>
         <script src="{{asset('plugins/glightbox/custom-glightbox.min.js')}}"></script>
+
+        <script>
+ 
+            function preload_image(img) {
+            img.src = img.dataset.src;
+            console.log(`Loading ${img.src}`);
+            }
+            const config_opts = {
+            rootMargin: '200px 200px 200px 200px'
+            };
+            let observer = new IntersectionObserver(function(entries, self) {
+            for(entry of entries) { 
+                if(entry.isIntersecting) {
+                let elem = entry.target;
+                preload_image(elem);   
+                self.unobserve(elem);
+                }
+            }
+            }, config_opts);
+
+            let images = document.querySelectorAll('img.lazy-load');
+            for(image of images) {
+            observer.observe(image);
+            }
+
+    </script>
+
     </x-slot>
     <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>
