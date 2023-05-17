@@ -1356,7 +1356,7 @@ Route::get('/grid', [Portfolio::class, 'grid_redir'])->name('portifolio-grid');
 Route::get('/sitemap.xml', [SitemapXmlController::class, 'index']);
 
 Route::get('/', function () {
-    $portifolios = Portifolio::all();
+    $portifolios = Portifolio::orderBy('id', 'DESC')->get();
     return view('pages.app.portifolio.grid', ['title' => env('NAME_PORTIFOLIO') . " | " . env('PROFISSAO'), 'breadcrumb' => 'This Breadcrumb'], compact('portifolios'));
 })->name('home');
 
