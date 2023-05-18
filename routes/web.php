@@ -1337,7 +1337,7 @@ Route::prefix('/app/portifolio')->group(function () {
     Route::get('/grid',[Portfolio::class, 'grid'])->name('portifolio-grid');
     Route::get('/album/bg/{id}',[Portfolio::class, 'album_bg'])->name('portifolio-bg');
     Route::get('/show/{id}',[Portfolio::class, 'show'])->name('portifolio-show');
-    Route::get('/create_thumb/{id}',[Portfolio::class, 'resizeImage'])->name('portifolio-create_thumb');
+    Route::get('/create_thumb/{id}',[Portfolio::class, 'create_thumb'])->name('portifolio-create_thumb');
 
 });
 
