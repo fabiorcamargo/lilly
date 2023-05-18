@@ -307,7 +307,7 @@ class Portfolio extends Controller
                    //dd($path); 
                     $imgFile = Image::make($photo->file);
 	   
-        $imgFile->resize(300, 300, function ($constraint) {
+        $imgFile->resize(500, 500, function ($constraint) {
 		    $constraint->aspectRatio();
 		})->save($path."thumb".$name);
         
