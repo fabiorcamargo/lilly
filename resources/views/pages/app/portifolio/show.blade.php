@@ -347,7 +347,7 @@
         <script src="{{asset('plugins/glightbox/glightbox.min.js')}}"></script>
         <script src="{{asset('plugins/glightbox/custom-glightbox.min.js')}}"></script>
 
-        <script>
+        {{--<script>
  
             function preload_image(img) {
             img.src = img.dataset.src;
@@ -371,7 +371,7 @@
             observer.observe(image);
             }
 
-    </script>
+    </script>--}}
 
     </x-slot>
     <!--  END CUSTOM SCRIPTS FILE  -->
