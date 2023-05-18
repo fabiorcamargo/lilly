@@ -306,10 +306,10 @@ class Portfolio extends Controller
             $name = (substr($photo->file, $pos+1, 200));
                    //dd($path); 
                     $imgFile = Image::make($photo->file);
-	   
-        $imgFile->resize(1000, 1000, function ($constraint) {
+                    $imgFile->save($path."thumb".$name, 50);
+        /*$imgFile->resize(1000, 1000, function ($constraint) {
 		    $constraint->aspectRatio();
-		})->save($path."thumb".$name);
+		})->save($path."thumb".$name);*/
         return redirect(getRouterValue() . "/app/portifolio/edit/$id");   
     }
     }
