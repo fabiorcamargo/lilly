@@ -118,7 +118,7 @@
                                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-4">
                                     @if(file_exists(get_thumb($photo->file)))
                                     <a href="{{asset("$photo->file")}}" class="withDescriptionGlightbox glightbox-content" data-glightbox="title: {{ $photo->name }}; description: {{ $photo->description }};">
-                                        <img class="img-fluid lazy-load" data-src="{{asset(get_thumb($photo->file))}}" alt="image"/>
+                                        <img class="img-fluid" src="{{asset(get_thumb($photo->file))}}" alt="image"/>
                                     </a>
                                     <div itemscope itemtype="https://schema.org/ImageObject" hidden>
                                         <img alt="{{$photo->name}} | {{env('NAME_PORTIFOLIO')}}" itemprop="contentUrl" content="{{asset(($photo->file))}}" />
@@ -142,7 +142,7 @@
                                         <span itemprop="creditText">"{{env('NAME_PORTIFOLIO')}} | {{env('PROFISSAO')}}"</span>
                                     </div>
                                     <a href="{{asset("$photo->file")}}" class="withDescriptionGlightbox glightbox-content" data-glightbox="title: {{ $photo->name }}; description: {{ $photo->description }};">
-                                        <img class="img-fluid lazy-load" data-src="{{asset("$photo->file")}}" alt="image" class="img-fluid" />
+                                        <img class="img-fluid" src="{{asset("$photo->file")}}" alt="image" class="img-fluid" />
                                     </a>
                                     @endif
                                 </div>

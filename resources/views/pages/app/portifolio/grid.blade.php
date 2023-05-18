@@ -102,9 +102,9 @@
             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4 mt-4">
                 <a class="card style-7"  href="{{ getRouterValue(); }}/app/portifolio/show/{{$portifolio->id}}">
                     @if(file_exists(get_thumb($portifolio->bg)))
-                    <img class="card-img-top lazy-load" data-src="{{asset(get_thumb($portifolio->bg))}}" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
+                    <img class="card-img-top" src="{{asset(get_thumb($portifolio->bg))}}" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
                     @else
-                    <img class="card-img-top lazy-load" data-src="{{asset("$portifolio->bg")}}" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
+                    <img class="card-img-top" src="{{asset("$portifolio->bg")}}" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
                     @endif
                     <div class="card-footer">
                         <div class="media mt-2">
