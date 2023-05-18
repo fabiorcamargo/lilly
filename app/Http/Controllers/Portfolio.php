@@ -310,7 +310,7 @@ class Portfolio extends Controller
         $imgFile->resize(500, 500, function ($constraint) {
 		    $constraint->aspectRatio();
 		})->save($path."thumb".$name);
-        
+        return redirect(getRouterValue() . "/app/portifolio/edit/$id");   
     }
     }
 
