@@ -332,10 +332,7 @@ class Portfolio extends Controller
                     $cropHeight = $thumbnailImage->height();
                     
                     //$thumbnailImage->resize($cropWidth/4,$cropHeight/4);
-                    //$thumbnailImage->save($path."thumb".$name, 50);
-                    $thumbnailImage->resize(800, 800, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->save($path."thumb".$name);
+                    $thumbnailImage->save($path."thumb".$name, 50);
 
                     //dd($photo->file);
                     //sleep(1);
