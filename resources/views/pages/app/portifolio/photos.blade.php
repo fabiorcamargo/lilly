@@ -54,7 +54,7 @@
                                 </div>
 
                                 <div class="col-xxl-12 col-sm-4 col-12 mx-auto">
-                                    <a href="{{ getRouterValue(); }}/app/portifolio/edit/{{$portifolio->id}}" class="btn btn-success w-100">Ver</a>
+                                    <a href="{{ getRouterValue(); }}/app/portifolio/create_thumb/{{$portifolio->id}}" class="btn btn-success w-100">Ver</a>
                                 </div>
 
                                     <div class="col-xxl-12 col-md-12 mb-4">

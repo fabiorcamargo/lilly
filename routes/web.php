@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     ImageController,
     Portfolio,
     RdController,
+    SitemapXmlController,
     TemporaryFileController,
     UserController
 };
@@ -1336,7 +1337,7 @@ Route::prefix('/app/portifolio')->group(function () {
     Route::get('/grid',[Portfolio::class, 'grid'])->name('portifolio-grid');
     Route::get('/album/bg/{id}',[Portfolio::class, 'album_bg'])->name('portifolio-bg');
     Route::get('/show/{id}',[Portfolio::class, 'show'])->name('portifolio-show');
-    Route::get('/create_thumb/{id}',[Portfolio::class, 'create_thumb'])->name('portifolio-create_thumb');
+    Route::get('/create_thumb/{id}',[Portfolio::class, 'resizeImage'])->name('portifolio-create_thumb');
 
 });
 
@@ -1352,11 +1353,13 @@ Route::prefix('/app/portifolio')->group(function () {
 Route::get('/fb/ViewContent', [ConversionApiFB::class, 'ViewContent'])->name('fb-ViewContent');
 Route::get('/form/{id}', [FormController::class, 'redir'])->name('form-redirect');
 Route::get('/grid', [Portfolio::class, 'grid_redir'])->name('portifolio-grid');
+Route::get('/sitemap.xml', [SitemapXmlController::class, 'index']);
 
 Route::get('/', function () {
-    $portifolios = Portifolio::all();
+    $portifolios = Portifolio::orderBy('updated_at', 'DESC')->get();
     return view('pages.app.portifolio.grid', ['title' => env('NAME_PORTIFOLIO') . " | " . env('PROFISSAO'), 'breadcrumb' => 'This Breadcrumb'], compact('portifolios'));
 })->name('home');
+
 
 require __DIR__.'/auth.php';
 

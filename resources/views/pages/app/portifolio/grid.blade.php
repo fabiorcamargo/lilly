@@ -39,7 +39,7 @@
                         <div class="post-meta-info d-flex justify-content-between">
                             <div class="media">
                                 <span class="avatar-chip bg-danger mb-2 me-4">
-                                    <img src="{{asset(env('IMG_PORTIFOLIO'))}}" alt="Person" width="96" height="96">
+                                    <img src="{{asset(App\Models\User::where('id', 2)->first()->image)}}" alt="Person" width="96" height="96">
                                     <span class="text">{{env('NAME_PORTIFOLIO')}}</span>
                                 </span>
                             </div>
@@ -102,13 +102,13 @@
             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4 mt-4">
                 <a class="card style-7"  href="{{ getRouterValue(); }}/app/portifolio/show/{{$portifolio->id}}">
                     @if(file_exists(get_thumb($portifolio->bg)))
-                    <img src="{{asset(get_thumb($portifolio->bg))}}" class="card-img-top" alt="...">
+                    <img class="card-img-top" src="{{asset(get_thumb($portifolio->bg))}}" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
                     @else
-                    <img src="{{asset("$portifolio->bg")}}" class="card-img-top" alt="...">
+                    <img class="card-img-top" src="{{asset("$portifolio->bg")}}" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
                     @endif
                     <div class="card-footer">
                         <div class="media mt-2">
-                        <img src="{{asset(env('IMG_POST'))}}" class="card-media-image me-3" alt="">
+                        <img src="{{asset(env('IMG_POST'))}}" class="card-media-image me-3" alt="{{env('NAME_PORTIFOLIO')}} | {{$portifolio->name}}">
                         <h5 class="card-title">{{ $portifolio->name }}</h5>
                         </div>
                         <p class="card-text pt-4">Ver mais</p>
@@ -122,6 +122,32 @@
     
     <!--  BEGIN CUSTOM SCRIPTS FILE  -->
     <x-slot:footerFiles>
+
+    <script>
+ 
+            function preload_image(img) {
+            img.src = img.dataset.src;
+            console.log(`Loading ${img.src}`);
+            }
+            const config_opts = {
+            rootMargin: '200px 200px 200px 200px'
+            };
+            let observer = new IntersectionObserver(function(entries, self) {
+            for(entry of entries) { 
+                if(entry.isIntersecting) {
+                let elem = entry.target;
+                preload_image(elem);   
+                self.unobserve(elem);
+                }
+            }
+            }, config_opts);
+
+            let images = document.querySelectorAll('img.lazy-load');
+            for(image of images) {
+            observer.observe(image);
+            }
+
+    </script>
 
     </x-slot>
     <!--  END CUSTOM SCRIPTS FILE  -->

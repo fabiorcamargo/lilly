@@ -18,7 +18,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login2', ['title' => 'Lilly Almeida - Seu melhor sistema de ensino', 'breadcrumb' => 'Login']);
+        return view('auth.login2', ['title' => 'Lilly Almeida - Fotografia', 'breadcrumb' => 'Login']);
     }
 
     /**
@@ -34,11 +34,11 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if(empty(Auth::user()->first)){
-        $home = '/ml/aluno/first';
+        $home = '/';
         }else{    
 
         if ((Auth::check())){
-        $home = '/ml/aluno/my';    
+        $home = '/';    
         }
         
     }
@@ -60,6 +60,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return Redirect::to('http://134.122.120.118/plesk-site-preview/lillyalmeida.com.br/http/134.122.120.118/ml/app/blog/grid');;
+        return Redirect::to('https://lillyalmeida.com.br');;
     }
 }

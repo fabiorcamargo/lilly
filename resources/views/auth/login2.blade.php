@@ -20,7 +20,7 @@
             <div class="row">
     
                 <div class="col-6 d-lg-flex d-none h-100 my-auto top-0 start-0 text-center justify-content-center flex-column">
-                    <div class="auth-cover-bg-image"><img src="{{Vite::asset('resources/images/lightbox-2.jpeg')}}" alt="auth-img"></div>
+                    {{--<div class="auth-cover-bg-image"><img src="{{Vite::asset('resources/images/lightbox-2.jpeg')}}" alt="auth-img"></div>--}}
                     <div class="auth-overlay"></div>
                         
                     <div class="auth-cover">
