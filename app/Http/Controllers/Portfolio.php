@@ -307,7 +307,7 @@ class Portfolio extends Controller
                    //dd($path); 
                     $imgFile = Image::make($photo->file);
 	   
-        $imgFile->resize(1000, 1000, function ($constraint) {
+        $imgFile->resize(800, '' , function ($constraint) {
 		    $constraint->aspectRatio();
 		})->save($path."thumb".$name);
         return redirect(getRouterValue() . "/app/portifolio/edit/$id");   
@@ -331,7 +331,7 @@ class Portfolio extends Controller
                     $cropWidth = $thumbnailImage->width();
                     $cropHeight = $thumbnailImage->height();
                     
-                    $thumbnailImage->resize(800);
+                    //$thumbnailImage->resize($cropWidth/4,$cropHeight/4);
                     $thumbnailImage->save($path."thumb".$name, 50);
 
                     //dd($photo->file);
